@@ -1,0 +1,20 @@
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Outer shape: gradient "stroke" -->
+    <item>
+        <shape android:shape="rectangle">
+            <gradient
+                android:type="linear"
+                android:startColor="#01D3F8"
+                android:endColor="#04FDAA"
+                android:angle="180"/>
+            <corners android:radius="10dp"/>
+        </shape>
+    </item>
+    <!-- Inner shape: solid background -->
+    <item android:left="2dp" android:top="2dp" android:right="2dp" android:bottom="3dp">
+        <shape android:shape="rectangle">
+            <solid android:color="#F60F6E84"/>
+            <corners android:radius="8dp"/>
+        </shape>
+    </item>
+</layer-list>
