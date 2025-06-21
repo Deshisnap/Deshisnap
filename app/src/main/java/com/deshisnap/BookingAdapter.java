@@ -1,4 +1,4 @@
-package com.foodcafe.myapplication;
+package com.deshisnap;
 
 import android.view.LayoutInflater;
 import android.view.View;

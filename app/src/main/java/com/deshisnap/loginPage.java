@@ -1,9 +1,14 @@
-package com.foodcafe.myapplication;
+package com.deshisnap;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
+
+import com.deshisnap.OtpPage;
+import com.deshisnap.R;
+import com.deshisnap.Registration_page;
+import com.deshisnap.Utils;
 
 import java.util.ArrayList;
 import java.util.List;

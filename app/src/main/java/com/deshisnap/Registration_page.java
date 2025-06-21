@@ -1,12 +1,9 @@
-package com.foodcafe.myapplication;
-import android.content.Intent;
+package com.deshisnap;
+
 import android.os.Bundle;
 import android.widget.TextView;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
 
-import java.util.ArrayList;
-import java.util.List;
+import androidx.appcompat.app.AppCompatActivity;
 
 public class Registration_page extends AppCompatActivity {
     @Override

@@ -1,4 +1,4 @@
-package com.foodcafe.myapplication;
+package com.deshisnap;
 import android.content.Context;
 import android.graphics.Color;
 import android.graphics.LinearGradient;

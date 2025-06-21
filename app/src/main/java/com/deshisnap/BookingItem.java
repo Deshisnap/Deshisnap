@@ -1,4 +1,4 @@
-package com.foodcafe.myapplication;
+package com.deshisnap;
 
 public class BookingItem {
     private String transactionId;

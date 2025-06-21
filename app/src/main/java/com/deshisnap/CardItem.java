@@ -1,4 +1,4 @@
-package com.foodcafe.myapplication;
+package com.deshisnap;
 
 public class CardItem {
     private int imageRes;
