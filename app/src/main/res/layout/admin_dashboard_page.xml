@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/appHometheme">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="8dp">
+
+        <!-- Heading Section -->
+        <RelativeLayout
+            android:id="@+id/heading"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp">
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Address"
+                android:textColor="@color/white"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:layout_alignParentStart="true"
+                android:layout_marginStart="10dp"
+
+                android:fontFamily="sans-serif" />
+
+            <ImageView
+                android:id="@+id/cart_img"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_alignParentEnd="true"
+                android:layout_marginEnd="16dp"
+                android:paddingTop="10dp"
+                android:src="@drawable/shopping_cart" />
+
+            <include
+                android:id="@+id/search_bar"
+                layout="@layout/searchbar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/cart_img"
+                android:layout_marginTop="8dp" />
+        </RelativeLayout>
+
+        <!-- Greeting & Tagline Section -->
+        <RelativeLayout
+            android:id="@+id/greettitle_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/heading"
+            android:paddingTop="12dp">
+
+            <TextView
+                android:id="@+id/greettitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Hello Admin ,"
+                android:textColor="#03FBAD"
+                android:textSize="35sp"
+                android:textStyle="bold"
+                android:paddingStart="15dp" />
+
+            <LinearLayout
+                android:id="@+id/tagline_container"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/greettitle"
+                android:orientation="horizontal"
+                android:layout_marginTop="4dp"
+                android:paddingStart="14dp">
+
+                <TextView
+                    android:id="@+id/taglinepart1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Every"
+                    android:textColor="#FFFFFF"
+                    android:textSize="29sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/taglinepart2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=" Snap"
+                    android:textColor="#03FBAD"
+                    android:textSize="29sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/textView3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=" Appreciation..."
+                    android:textColor="#FFFFFF"
+                    android:textSize="29sp"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <View
+                android:id="@+id/strokebar2"
+                android:layout_width="match_parent"
+                android:layout_height="3dp"
+                android:layout_below="@id/tagline_container"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:background="#85FFFFFF" />
+
+            <TextView
+                android:id="@+id/greeting"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/strokebar2"
+                android:text="Admin Dash Board "
+                android:textColor="#03FBAD"
+                android:textSize="35sp"
+                android:textStyle="bold"
+                android:paddingStart="15dp" />
+        </RelativeLayout>
+
+        <!-- Slots Section using RelativeLayout -->
+        <RelativeLayout
+            android:id="@+id/slots_section"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/greettitle_container"
+            android:layout_marginTop="10dp">
+
+            <!-- Row 1 -->
+            <LinearLayout
+                android:id="@+id/row1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="8dp">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="140dp"
+                    android:layout_weight="1"
+                    android:layout_marginEnd="4dp"
+                    android:background="@drawable/time_slot_bg"
+                    android:gravity="center"
+                    android:text="View All Bookings"
+                    android:textColor="@color/white"
+                    android:textSize="15sp"
+                    android:textAlignment="center" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="140dp"
+                    android:layout_weight="1"
+                    android:layout_marginStart="4dp"
+                    android:background="@drawable/time_slot_bg"
+                    android:gravity="center"
+                    android:text="Manage User"
+                    android:textColor="@color/white"
+                    android:textSize="15sp" />
+            </LinearLayout>
+
+            <!-- Row 2 -->
+            <LinearLayout
+                android:id="@+id/row2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_below="@id/row1">
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="140dp"
+                    android:layout_weight="1"
+                    android:layout_marginEnd="4dp"
+                    android:background="@drawable/time_slot_bg"
+                    android:gravity="center"
+                    android:text="Add / remove service"
+                    android:textColor="@color/white"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="140dp"
+                    android:layout_weight="1"
+                    android:layout_marginStart="4dp"
+                    android:background="@drawable/time_slot_bg"
+                    android:gravity="center"
+                    android:text="Send Notification"
+                    android:textColor="@color/white"
+                    android:textSize="15sp" />
+            </LinearLayout>
+        </RelativeLayout>
+
+    </RelativeLayout>
+</ScrollView>

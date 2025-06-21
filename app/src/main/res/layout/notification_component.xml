@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@color/appHometheme"
+    android:padding="13dp"
+    >
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+        <ImageView
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:src="@drawable/noto_hammer_and_wrench"
+            >
+
+        </ImageView>
+        <TextView
+            android:id="@+id/Notification_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/NotificationTitle"
+            android:textSize="16sp"
+            android:textFontWeight="600"
+            android:textColor="@color/white"
+            android:layout_marginLeft="20dp"
+            >
+
+        </TextView>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/Notification_message"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:text="@string/Notification_message"
+            android:layout_marginLeft="36dp"
+            android:textFontWeight="500"
+            android:textSize="15sp"
+
+            >
+
+        </TextView>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:src="@drawable/noto_alarm_clock"
+            >
+
+        </ImageView>
+        <TextView
+            android:id="@+id/Notification_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/Notification_date"
+            android:textSize="16sp"
+            android:textFontWeight="600"
+            android:textColor="@color/white"
+            android:layout_marginLeft="20dp"
+            >
+
+        </TextView>
+        
+    </LinearLayout>
+
+</LinearLayout>

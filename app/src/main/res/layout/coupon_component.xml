@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/coupon_container"
+    android:background="@color/appHometheme">
+    <RelativeLayout
+        android:id="@+id/coupon_heading"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+
+        <ImageView
+            android:id="@+id/discount_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/discount_icon"
+            android:layout_centerVertical="true"
+            >
+        </ImageView>
+         <TextView
+             android:id="@+id/coupon_offer_text"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:text="COUPONS &amp; OFFERS"
+             android:textColor="@color/textcolor"
+             android:layout_toRightOf="@+id/discount_icon"
+             android:layout_centerVertical="true"
+             android:layout_marginLeft="20dp"
+             android:textSize="15sp"
+             android:textFontWeight="700"
+             android:fontFamily="sans-serif"
+             >
+
+         </TextView>
+        <RelativeLayout
+            android:id="@+id/offer_numbers"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:background="@drawable/quantity_bg"
+            android:layout_centerVertical="true"
+            android:layout_margin="10dp"
+            >
+            <TextView
+                android:id="@+id/offer_numbers_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="3+ Offers"
+                android:textColor="@color/white"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:layout_margin="10dp"
+
+                >
+            </TextView>
+
+        </RelativeLayout>
+
+
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/apply_coupon_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/app_button_ripple"
+        android:layout_centerVertical="true"
+        android:layout_below="@id/coupon_heading"
+        android:layout_margin="30dp"
+        android:clickable="true"
+        android:focusable="true"
+        tools:ignore="TouchTargetSizeCheck"
+        >
+        <TextView
+            android:id="@+id/apply_coupon_button_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Apply Coupon"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:fontFamily="sans-serif"
+            android:textStyle="bold"
+            android:textFontWeight="400"
+            android:layout_centerHorizontal="true"
+            android:layout_margin="10dp"
+
+            >
+        </TextView>
+
+    </RelativeLayout>
+
+</RelativeLayout>

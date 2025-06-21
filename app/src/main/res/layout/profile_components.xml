@@ -1,0 +1,364 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/appHometheme">
+
+    <RelativeLayout
+        android:id="@+id/profile_button"
+        android:layout_width="match_parent"
+        android:layout_height="52dp"
+        android:clickable="true"
+        android:focusable="true"
+        tools:ignore="TouchTargetSizeCheck"
+        android:background="@drawable/ripple_bg"
+
+
+        >
+
+        <ImageView
+            android:id="@+id/imgsrc"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/el_list_alt"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="8dp"
+            >
+        </ImageView>
+
+        <TextView
+            android:id="@+id/profile_component_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:text="My Plans"
+            android:layout_marginLeft="38dp"
+            android:textFontWeight="400"
+            android:fontFamily="sans-serif"
+            android:textColor="@color/white"
+            android:layout_toRightOf="@id/imgsrc"
+            android:layout_centerVertical="true"
+            >
+
+        </TextView>
+
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:src="@drawable/arrow_mark"
+            android:layout_centerVertical="true"
+            android:paddingRight="15dp"
+            >
+        </ImageView>
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="52dp"
+        android:id="@+id/manage_address_button"
+        android:layout_below="@id/profile_button"
+        android:layout_marginTop="8dp"
+        android:clickable="true"
+        android:focusable="true"
+        tools:ignore="TouchTargetSizeCheck"
+        android:background="@drawable/ripple_bg"
+        >
+
+        <ImageView
+            android:id="@+id/location_icon"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/location_pic"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="8dp"
+            >
+        </ImageView>
+
+        <TextView
+            android:id="@+id/manage_address_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:text="Manage_addres"
+            android:layout_marginLeft="38dp"
+            android:textFontWeight="400"
+            android:fontFamily="sans-serif"
+            android:textColor="@color/white"
+            android:layout_toRightOf="@id/location_icon"
+            android:layout_centerVertical="true"
+            >
+
+        </TextView>
+
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:src="@drawable/arrow_mark"
+            android:layout_centerVertical="true"
+            android:paddingRight="15dp"
+            >
+        </ImageView>
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="52dp"
+        android:id="@+id/manage_payment_button"
+        android:layout_below="@id/manage_address_button"
+        android:layout_marginTop="8dp"
+        android:clickable="true"
+        android:focusable="true"
+        tools:ignore="TouchTargetSizeCheck"
+        android:background="@drawable/ripple_bg"
+        >
+
+        <ImageView
+            android:id="@+id/master_card_icon"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/master_card_icon"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="8dp"
+            >
+        </ImageView>
+
+        <TextView
+            android:id="@+id/payment_manage_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:text="Manage Payment"
+            android:layout_marginLeft="38dp"
+            android:textFontWeight="400"
+            android:fontFamily="sans-serif"
+            android:textColor="@color/white"
+            android:layout_toRightOf="@id/master_card_icon"
+            android:layout_centerVertical="true"
+            >
+
+        </TextView>
+
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:src="@drawable/arrow_mark"
+            android:layout_centerVertical="true"
+            android:paddingRight="15dp"
+            >
+        </ImageView>
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="52dp"
+        android:id="@+id/wallet_button"
+        android:layout_below="@id/manage_payment_button"
+        android:layout_marginTop="8dp"
+        android:clickable="true"
+        android:focusable="true"
+        tools:ignore="TouchTargetSizeCheck"
+        android:background="@drawable/ripple_bg"
+        >
+
+        <ImageView
+            android:id="@+id/wallet_icon"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/wallet_icon"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="8dp"
+            >
+        </ImageView>
+
+        <TextView
+            android:id="@+id/wallet_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:text="Wallet"
+            android:layout_marginLeft="38dp"
+            android:textFontWeight="400"
+            android:fontFamily="sans-serif"
+            android:textColor="@color/white"
+            android:layout_toRightOf="@id/wallet_icon"
+            android:layout_centerVertical="true"
+            >
+
+        </TextView>
+
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:src="@drawable/arrow_mark"
+            android:layout_centerVertical="true"
+            android:paddingRight="15dp"
+            >
+        </ImageView>
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="52dp"
+        android:id="@+id/setting_button"
+        android:layout_below="@id/wallet_button"
+        android:layout_marginTop="8dp"
+        android:clickable="true"
+        android:focusable="true"
+        tools:ignore="TouchTargetSizeCheck"
+        android:background="@drawable/ripple_bg"
+        >
+
+        <ImageView
+            android:id="@+id/setting_icon"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/setting_icon"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="8dp"
+            >
+        </ImageView>
+
+        <TextView
+            android:id="@+id/setting_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:text="Setting"
+            android:layout_marginLeft="38dp"
+            android:textFontWeight="400"
+            android:fontFamily="sans-serif"
+            android:textColor="@color/white"
+            android:layout_toRightOf="@id/setting_icon"
+            android:layout_centerVertical="true"
+            >
+
+        </TextView>
+
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:src="@drawable/arrow_mark"
+            android:layout_centerVertical="true"
+            android:paddingRight="15dp"
+            >
+        </ImageView>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="52dp"
+        android:id="@+id/costomer_service_button"
+        android:layout_below="@id/setting_button"
+        android:layout_marginTop="8dp"
+        android:clickable="true"
+        android:focusable="true"
+        tools:ignore="TouchTargetSizeCheck"
+        android:background="@drawable/ripple_bg"
+        >
+
+        <ImageView
+            android:id="@+id/service_icon"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/service_icon"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="8dp"
+            >
+        </ImageView>
+
+        <TextView
+            android:id="@+id/service_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:text="Help &amp; Support"
+            android:layout_marginLeft="38dp"
+            android:textFontWeight="400"
+            android:fontFamily="sans-serif"
+            android:textColor="@color/white"
+            android:layout_toRightOf="@id/service_icon"
+            android:layout_centerVertical="true"
+            >
+
+        </TextView>
+
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:src="@drawable/arrow_mark"
+            android:layout_centerVertical="true"
+            android:paddingRight="15dp"
+            >
+        </ImageView>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="52dp"
+        android:id="@+id/about_us_button"
+        android:layout_below="@id/costomer_service_button"
+        android:layout_marginTop="8dp"
+        android:clickable="true"
+        android:focusable="true"
+        tools:ignore="TouchTargetSizeCheck"
+        android:background="@drawable/ripple_bg"
+        >
+
+        <ImageView
+            android:id="@+id/about_us_icon"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/about_us_icon"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="8dp"
+            >
+        </ImageView>
+
+        <TextView
+            android:id="@+id/about_us_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:text="About Us"
+            android:layout_marginLeft="38dp"
+            android:textFontWeight="400"
+            android:fontFamily="sans-serif"
+            android:textColor="@color/white"
+            android:layout_toRightOf="@id/about_us_icon"
+            android:layout_centerVertical="true"
+            >
+
+        </TextView>
+
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:src="@drawable/arrow_mark"
+            android:layout_centerVertical="true"
+            android:paddingRight="15dp"
+            >
+        </ImageView>
+    </RelativeLayout>
+
+
+
+</RelativeLayout>

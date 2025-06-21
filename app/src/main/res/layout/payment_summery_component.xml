@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/appHometheme"
+
+    >
+    <TextView
+        android:id="@+id/payment_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Payment Summary"
+        android:textSize="20sp"
+        android:textFontWeight="700"
+        android:textColor="@color/textcolor"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="15dp"
+        >
+    </TextView>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#2F7889"
+        android:layout_below="@id/payment_text"
+        app:cardCornerRadius="10dp"
+        android:layout_margin="15dp"
+        >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="15dp"
+            >
+
+            <TextView
+                android:id="@+id/total_item"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Item Total          :"
+                android:textSize="20dp"
+                android:textColor="@color/white"
+                android:layout_margin="10dp"
+                >
+
+            </TextView>
+
+
+            <TextView
+                android:id="@+id/visitation_fees"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Visitation Fees  :"
+                android:textSize="20dp"
+                android:textColor="@color/white"
+                android:layout_margin="10dp"
+                android:layout_below="@id/total_item"
+
+                >
+
+            </TextView>
+
+
+            <TextView
+                android:id="@+id/Taxes_fees"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Taxes and Fees :"
+                android:textSize="20dp"
+                android:textColor="@color/white"
+                android:layout_margin="10dp"
+                android:layout_below="@id/visitation_fees"
+
+                >
+
+            </TextView>
+
+
+
+            <TextView
+                android:id="@+id/Other_expenses"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Other_expenses :"
+                android:textSize="20dp"
+                android:textColor="@color/white"
+                android:layout_margin="10dp"
+                android:layout_below="@id/Taxes_fees"
+
+                >
+
+            </TextView>
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/Other_expenses"
+                android:layout_centerHorizontal="true"
+
+                >
+                <TextView
+                    android:id="@+id/book_a_slot_button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=" Book a Slot "
+                    android:gravity="center"
+                    android:textSize="15sp"
+                    android:paddingLeft="30dp"
+                    android:paddingRight="30dp"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp"
+                    android:background="@drawable/yes_bg_ripple"
+                    android:textColor="@color/white"
+                    android:textStyle="bold"
+                    android:fontFamily="@string/font"
+                    android:clickable="true"
+                    android:focusable="true"
+                    tools:ignore="TouchTargetSizeCheck"
+                    >
+
+                </TextView>
+            </RelativeLayout>
+
+        </RelativeLayout>
+
+
+
+
+
+    </androidx.cardview.widget.CardView>
+
+
+</RelativeLayout>

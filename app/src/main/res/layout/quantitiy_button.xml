@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@color/appHometheme"
+    >
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="33dp"
+        android:background="@drawable/quantity_bg"
+        >
+
+        <ImageView
+            android:id="@+id/num_decrease"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/tdesign_minus"
+            android:layout_centerVertical="true"
+            android:paddingLeft="5dp"
+
+            >
+        </ImageView>
+
+        <TextView
+            android:id="@+id/quantityNum"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="1"
+            android:textSize="20sp"
+            android:textFontWeight="700"
+            android:textColor="@color/white"
+            android:fontFamily="sans-serif"
+            android:layout_marginLeft="20dp"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
+            android:layout_toRightOf="@id/num_decrease"
+
+
+            >
+
+        </TextView>
+
+        <ImageView
+            android:id="@+id/num_increase"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ri_add_fill"
+            android:layout_toRightOf="@id/quantityNum"
+            android:layout_centerVertical="true"
+            android:paddingRight="5dp"
+            >
+        </ImageView>
+
+
+    </RelativeLayout>
+
+
+
+</RelativeLayout>

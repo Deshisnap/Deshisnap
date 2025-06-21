@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="158dp"
+    android:background="@drawable/offer_bg"
+    android:layout_margin="20dp"
+    >
+
+    <RelativeLayout
+        android:id="@+id/offers"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+
+        <View
+            android:id="@+id/horizintalstrip"
+            android:layout_width="match_parent"
+            android:layout_height="5dp"
+            android:background="#4F000000"
+            android:layout_marginTop="20dp"
+
+            android:layout_marginBottom="10dp"
+            />
+
+
+
+        <!-- Vertical strip (divider) -->
+        <View
+            android:id="@+id/vertical_strip"
+            android:layout_width="5dp"
+            android:layout_height="match_parent"
+            android:background="#4F000000"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="5dp"
+            android:layout_centerVertical="true"
+            />
+
+        <ImageView
+            android:id="@+id/offer_img"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/horizintalstrip"
+            android:layout_toRightOf="@id/vertical_strip"
+            android:src="@drawable/offere_img"
+            >
+
+        </ImageView>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ProOffer"
+            android:layout_below="@id/horizintalstrip"
+            android:textSize="16sp"
+            android:textFontWeight="700"
+            android:textColor="@color/white"
+            android:fontFamily="sans-serif"
+            android:layout_toRightOf="@id/offer_img"
+
+            >
+
+        </TextView>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="@string/offer_description"
+            android:layout_below="@+id/offer_img"
+            android:layout_toRightOf="@+id/vertical_strip"
+            android:textColor="@color/white"
+            android:fontFamily="sans-serif"
+            android:textSize="15sp"
+            android:layout_marginBottom="10dp"
+            >
+
+        </TextView>
+
+
+    </RelativeLayout>
+
+</RelativeLayout>

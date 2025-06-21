@@ -1,0 +1,201 @@
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/login">
+
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView"
+        android:layout_width="396dp"
+        android:layout_height="wrap_content"
+
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+
+        app:cardBackgroundColor="@android:color/transparent"
+        app:cardCornerRadius="21dp"
+        android:elevation="10dp"
+        >
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/glass_bg"
+            >
+            <TextView
+                android:id="@+id/login_page_heading"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Sign Up"
+                android:textColor="@color/white"
+                android:textSize="36sp"
+                android:textFontWeight="600"
+                android:fontFamily="@string/font"
+                android:layout_marginTop="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_centerHorizontal="true"
+
+                >
+            </TextView>
+
+            <RelativeLayout
+                android:id="@+id/sign_up_data"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/login_page_heading"
+                android:layout_margin="20dp"
+                android:padding="10dp"
+                >
+
+                <TextView
+                    android:id="@+id/first_name_heading"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Phone Number*"
+                    android:textColor="@color/white" />
+
+                <EditText
+                    android:id="@+id/phone_number_input"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:backgroundTint="@color/white"
+                    android:hint="Enter Your Phone Number"
+                    android:textColorHint="@color/black"
+                    android:paddingStart="12dp"
+                    android:background="@drawable/edit_text_dark_bg"
+                    android:inputType="textPersonName"
+                    android:layout_below="@id/first_name_heading"
+                    android:layout_marginBottom="20dp"
+                    />
+
+                <TextView
+                    android:id="@+id/send_otp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/button_background"
+                    android:text="Send OTP"
+                    android:textColor="@color/white"
+                    android:textSize="20sp"
+                    android:layout_below="@id/phone_number_input"
+
+                    android:layout_centerHorizontal="true"
+                    android:textAlignment="center"
+                    android:padding="5dp"
+                    >
+
+                </TextView>
+                
+                
+                 <RelativeLayout
+                     android:id="@+id/google_login_button"
+                     android:layout_width="match_parent"
+                     android:layout_height="wrap_content"
+                     android:layout_below="@+id/send_otp"
+                     android:background="@drawable/edit_text_bg"
+                     android:padding="5dp"
+                     android:layout_marginTop="40dp"
+
+
+                     >
+                     <ImageView
+                         android:id="@+id/google_img"
+                         android:layout_width="27dp"
+                         android:layout_height="27dp"
+                         android:src="@drawable/google"
+                         android:layout_toRightOf="@id/google_text"
+                         android:layout_centerVertical="true"
+                         android:layout_marginLeft="5dp"
+                         >
+
+                     </ImageView>
+                     <TextView
+                         android:id="@+id/google_text"
+                         android:layout_width="wrap_content"
+                         android:layout_height="wrap_content"
+                         android:text="Login With"
+                         android:layout_centerVertical="true"
+                         android:layout_centerHorizontal="true"
+                         android:textSize="16dp"
+                         android:textColor="@color/black"
+                         android:fontFamily="@string/font"
+                         android:textFontWeight="500"
+                         android:gravity="center"
+                         >
+
+                     </TextView>
+                     
+                 </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/whatsapp_login_button"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/google_login_button"
+                    android:background="@drawable/edit_text_bg"
+                    android:padding="5dp"
+                    android:layout_marginTop="15dp"
+
+
+                    >
+                    <ImageView
+                        android:id="@+id/whatsapp_img"
+                        android:layout_width="27dp"
+                        android:layout_height="27dp"
+                        android:src="@drawable/whatsapp"
+                        android:layout_toRightOf="@id/whatsapp_text"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="5dp"
+                        >
+
+                    </ImageView>
+                    <TextView
+                        android:id="@+id/whatsapp_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Login With"
+                        android:layout_centerVertical="true"
+                        android:layout_centerHorizontal="true"
+                        android:textSize="16dp"
+                        android:fontFamily="@string/font"
+                        android:textFontWeight="500"
+                        android:textColor="@color/black"
+                        android:gravity="center"
+                        >
+
+                    </TextView>
+
+
+
+                </RelativeLayout>
+
+
+
+
+
+                <TextView
+                    android:id="@+id/not_a_user"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Not A user Register Here"
+                    android:textColor="@color/white"
+                    android:layout_below="@id/whatsapp_login_button"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="15dp"
+                    android:textFontWeight="500"
+                    android:fontFamily="@string/font"
+                    >
+
+                </TextView>
+               
+            </RelativeLayout>
+
+
+        </RelativeLayout>
+
+
+    </androidx.cardview.widget.CardView>
+
+</RelativeLayout>
