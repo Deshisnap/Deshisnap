@@ -1,10 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="purple_200">#FFBB86FC</color>
-    <color name="purple_500">#FF6200EE</color>
-    <color name="purple_700">#FF3700B3</color>
-    <color name="teal_200">#FF03DAC5</color>
-    <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="bg">#020D17</color>
+    <color name="overlay">#3DFFFFFF</color>
+    <color name="appHometheme">#182E41</color>
+    <color name="textcolor">#03FBAD</color>
+    <color name="nav_bg">#222B45</color> <!-- Dark blue background -->
+    <color name="nav_item_active">#00E676</color> <!-- Green for active item -->
+    <color name="nav_item_inactive">#C3C3C3</color> <!-- Grey for inactive items -->
+    <color name="nav_ripple">#1DE9B6</color> <!-- Ripple effect color -->
+    <color name="otp_box_colour">#F01F1E1E</color>
+    <color name="transparent">#01D6D4D4</color>
+
 </resources>
