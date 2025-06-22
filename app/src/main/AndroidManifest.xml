@@ -15,6 +15,13 @@
         <activity
             android:name=".MainActivity"
             android:exported="true">
+
+        </activity>
+
+
+        <activity
+            android:name=".SplashScreenActivity"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -30,6 +37,7 @@
         <activity android:name=".Booking_Time_QR_Page" />
         <activity android:name=".loginPage" />
         <activity android:name=".Registration_page" />
+
     </application>
 
 </manifest>
