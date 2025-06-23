@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp"
+    app:cardCornerRadius="16dp"
+    app:cardElevation="6dp"
+    app:cardUseCompatPadding="true"
+    android:background="@color/appHometheme"
+
+    >
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        >
+
+        <ImageView
+            android:id="@+id/cardImage"
+            android:layout_width="140dp"
+            android:layout_height="140dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/ic_launcher_background"
+            android:contentDescription="Image"
+            android:layout_marginBottom="2dp" />
+
+        <TextView
+            android:id="@+id/cardText"
+            android:layout_width="140dp"
+            android:layout_height="wrap_content"
+            android:text="Sample Text"
+            android:textColor="#F4F6F5"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:background="@color/appHometheme"
+            android:layout_below="@id/cardImage"
+
+            />
+
+
+        <!-- Overlay that shows over the CardView only -->
+        <RelativeLayout
+            android:id="@+id/overlayLayout"
+            android:layout_width="140dp"
+            android:layout_height="170dp"
+            android:background="#36FEFEFE"
+            android:visibility="visible"
+            android:padding="8dp"
+            android:elevation="10dp">
+
+            <ImageView
+                android:id="@+id/closeOverlay"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_alignParentEnd="true"
+                android:layout_margin="4dp"
+                android:src="@drawable/cross_cancel"
+                android:contentDescription="Close"
+                android:background="?selectableItemBackgroundBorderless" />
+        </RelativeLayout>
+
+
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>

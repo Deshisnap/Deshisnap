@@ -69,6 +69,9 @@
 
         >
 
+
+        <!-- Table Layout Grid -->
+
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -81,12 +84,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <TextView
-                    android:id="@+id/notification_page_heading"
+                    android:id="@+id/plumber_services"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Notifications"
+                    android:text="Plumber"
                     android:textSize="29sp"
-                    android:textColor="#32EC38"
+                    android:textColor="#BCBCBC"
                     android:paddingBottom="5dp"
                     android:paddingLeft="10dp"
                     android:textFontWeight="700"
@@ -96,8 +99,32 @@
                     >
 
                 </TextView>
+                <LinearLayout
+                    android:id="@+id/ratings"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_below="@id/plumber_services"
+                    >
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/material_symbols_star"
+                        >
 
+                    </ImageView>
 
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/rating"
+                        android:textSize="17sp"
+                        android:textColor="@color/white"
+                        >
+
+                    </TextView>
+
+                </LinearLayout>
 
                 <View
                     android:id="@+id/strokebar"
@@ -106,29 +133,65 @@
                     android:background="#4F000000"
                     android:layout_marginTop="10dp"
                     android:layout_marginBottom="15dp"
-                    android:layout_below="@+id/notification_page_heading"
+                    android:layout_below="@+id/ratings"
                     />
 
-
-
-
-
-                <!--   all  content-->
-                <include android:id="@+id/test"
-                    android:layout_height="wrap_content"
-                    android:layout_width="wrap_content"
-                    layout="@layout/notification_component"
-                    android:layout_below="@id/strokebar"
-                    >
-
-                </include>
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/notification_recycler"
+                <RelativeLayout
+                    android:id="@+id/offers"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/test"
-                    />
+                    android:layout_below="@+id/strokebar"
+                    android:layout_marginBottom="20dp"
+                    >
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/notification_add_button"
+                        android:layout_width="136dp"
+                        android:layout_height="33dp"
+                        android:layout_marginLeft="12dp"
+                        android:backgroundTint="#466D8F"
+                        app:cardCornerRadius="6dp"
+                        android:clickable="true"
+                        android:focusable="true"
+                        tools:ignore="TouchTargetSizeCheck"
+                        android:layout_alignParentStart="true"
+                        >
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            >
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="+ Add More"
+                                android:textColor="@color/white"
+                                android:textSize="20dp"
+                                android:padding="4dp"
+                                android:fontFamily="@string/font"
+                                android:textFontWeight="700"
+                                >
+
+                            </TextView>
+
+                        </LinearLayout>
+
+
+
+                    </androidx.cardview.widget.CardView>
+
+
+                </RelativeLayout>
+                <!--   use service_card for template-->
+                <androidx.recyclerview.widget.RecyclerView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/offers"
+                    >
+
+                </androidx.recyclerview.widget.RecyclerView>
+                <!--   use service_card for template-->
 
 
 
@@ -144,12 +207,9 @@
             android:elevation="8dp"
             android:orientation="horizontal"
             android:padding="1dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            >  <!-- ensures it sits above the ScrollView -->
+            app:layout_constraintBottom_toBottomOf="parent">  <!-- ensures it sits above the ScrollView -->
 
             <include layout="@layout/navbar"
-                android:layout_height="match_parent"
-                android:layout_width="match_parent"
                 android:id="@+id/bottom_navigation" />
 
 

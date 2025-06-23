@@ -81,10 +81,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <TextView
-                    android:id="@+id/notification_page_heading"
+                    android:id="@+id/booking_page_heading"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Notifications"
+                    android:text="Manage Users"
                     android:textSize="29sp"
                     android:textColor="#32EC38"
                     android:paddingBottom="5dp"
@@ -103,33 +103,23 @@
                     android:id="@+id/strokebar"
                     android:layout_width="match_parent"
                     android:layout_height="3dp"
-                    android:background="#4F000000"
+                    android:background="#4F373636"
                     android:layout_marginTop="10dp"
                     android:layout_marginBottom="15dp"
-                    android:layout_below="@+id/notification_page_heading"
+                    android:layout_below="@+id/booking_page_heading"
                     />
-
-
 
 
 
                 <!--   all  content-->
-                <include android:id="@+id/test"
-                    android:layout_height="wrap_content"
-                    android:layout_width="wrap_content"
-                    layout="@layout/notification_component"
-                    android:layout_below="@id/strokebar"
-                    >
-
-                </include>
 
                 <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/notification_recycler"
+                    android:id="@+id/user_recycler"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/test"
+                    android:layout_below="@id/strokebar"
                     />
-
+                <!-- use user_details_card as template -->
 
 
             </RelativeLayout>

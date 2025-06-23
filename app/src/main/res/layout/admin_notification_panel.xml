@@ -109,8 +109,42 @@
                     android:layout_below="@+id/notification_page_heading"
                     />
 
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/notification_add_button"
+                    android:layout_below="@id/strokebar"
+                    android:layout_width="136dp"
+                    android:layout_height="33dp"
+                    android:layout_marginLeft="12dp"
+                    android:backgroundTint="#466D8F"
+                    app:cardCornerRadius="6dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    tools:ignore="TouchTargetSizeCheck"
+                    >
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        >
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="+ Add More"
+                            android:textColor="@color/white"
+                            android:textSize="20dp"
+                            android:padding="4dp"
+                            android:fontFamily="@string/font"
+                            android:textFontWeight="700"
+                            >
+
+                        </TextView>
+
+                    </LinearLayout>
 
 
+
+                </androidx.cardview.widget.CardView>
 
 
                 <!--   all  content-->
@@ -118,7 +152,7 @@
                     android:layout_height="wrap_content"
                     android:layout_width="wrap_content"
                     layout="@layout/notification_component"
-                    android:layout_below="@id/strokebar"
+                    android:layout_below="@id/notification_add_button"
                     >
 
                 </include>
