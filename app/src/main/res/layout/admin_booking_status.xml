@@ -120,6 +120,8 @@
                     android:layout_below="@id/strokebar"
                     />
 
+                <!-- use admin_booking_status_card -->
+
 
             </RelativeLayout>
         </ScrollView>
