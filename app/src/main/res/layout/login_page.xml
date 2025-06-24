@@ -73,7 +73,7 @@
                     android:id="@+id/send_otp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/button_background"
+                    android:background="@drawable/button_ripple_bg"
                     android:text="Send OTP"
                     android:textColor="@color/white"
                     android:textSize="20sp"

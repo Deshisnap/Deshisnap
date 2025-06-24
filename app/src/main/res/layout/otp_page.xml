@@ -175,7 +175,7 @@
                     android:textColor="@color/white"
                     android:textFontWeight="500"
                     android:textSize="19sp"
-                    android:background="@drawable/button_background"
+                    android:background="@drawable/button_ripple_bg"
                     android:clickable="true"
                     android:focusable="true"
                     android:padding="8dp"
