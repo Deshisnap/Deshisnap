@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "4018666695",
+    "firebase_url": "https://deshisnap-app-2025-default-rtdb.firebaseio.com",
+    "project_id": "deshisnap-app-2025",
+    "storage_bucket": "deshisnap-app-2025.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:4018666695:android:37e0107a931646cde4d2e2",
+        "android_client_info": {
+          "package_name": "com.deshisnap"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "4018666695-2p2utn1s5o458onskk7b4khmqgr5fk6u.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.deshisnap",
+            "certificate_hash": "1871b57da59bb878c4218e34869e35b0ea831118"
+          }
+        },
+        {
+          "client_id": "4018666695-s0arpqgpricpm6m8qaqe5ouj2iv6p6ui.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAOXHCbGPQziI1WpEl55XbCbzfMI4p92fI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "4018666695-s0arpqgpricpm6m8qaqe5ouj2iv6p6ui.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

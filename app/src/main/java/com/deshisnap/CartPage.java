@@ -6,11 +6,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class CartPage extends AppCompatActivity {
     @Override
@@ -34,7 +29,7 @@ public class CartPage extends AppCompatActivity {
             finish();
         });
         findViewById(R.id.profile_button).setOnClickListener(v -> {
-            startActivity(new Intent(CartPage.this, loginPage.class));
+            startActivity(new Intent(CartPage.this, LoginPage.class));
             finish();
         });
 

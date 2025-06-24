@@ -1,6 +1,7 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
+    alias(libs.plugins.google.gms.google.services)
 }
 
 android {
@@ -64,10 +65,15 @@ dependencies {
     implementation(libs.androidx.constraintlayout)
     implementation(libs.androidx.navigation.fragment)
     implementation(libs.androidx.navigation.ui)
+    implementation(libs.firebase.auth)
+    implementation(libs.firebase.database)
     testImplementation(libs.junit)
     implementation ("androidx.core:core-ktx:1.12.0")
     implementation ("androidx.activity:activity-ktx:1.8.0")
     implementation ("androidx.activity:activity-compose:1.8.0")
+    implementation("com.googlecode.libphonenumber:libphonenumber:8.12.30")
+    implementation ("com.google.android.gms:play-services-auth:20.0.1")
+    implementation ("com.google.firebase:firebase-database:20.0.5")
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
     androidTestImplementation(platform(libs.androidx.compose.bom))

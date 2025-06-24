@@ -8,10 +8,10 @@
             <InsightsFilterSettings>
               <option name="connection">
                 <ConnectionSetting>
-                  <option name="appId" value="PLACEHOLDER" />
-                  <option name="mobileSdkAppId" value="" />
-                  <option name="projectId" value="" />
-                  <option name="projectNumber" value="" />
+                  <option name="appId" value="com.deshisnap" />
+                  <option name="mobileSdkAppId" value="1:4018666695:android:37e0107a931646cde4d2e2" />
+                  <option name="projectId" value="deshisnap-app-2025" />
+                  <option name="projectNumber" value="4018666695" />
                 </ConnectionSetting>
               </option>
               <option name="signal" value="SIGNAL_UNSPECIFIED" />

@@ -35,7 +35,7 @@
         <activity android:name=".CartPage" />
         <activity android:name=".OtpPage" />
         <activity android:name=".Booking_Time_QR_Page" />
-        <activity android:name=".loginPage" />
+        <activity android:name=".LoginPage" />
         <activity android:name=".Registration_page" />
 
     </application>
