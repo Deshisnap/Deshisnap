@@ -7,23 +7,19 @@
     android:background="@drawable/login">
 
 
-    <androidx.cardview.widget.CardView
+    <RelativeLayout
         android:id="@+id/cardView"
         android:layout_width="396dp"
         android:layout_height="wrap_content"
-
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"
-
-        app:cardBackgroundColor="@android:color/transparent"
-        app:cardCornerRadius="21dp"
-        android:elevation="10dp"
+        android:background="@drawable/rectangle_12"
         >
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/glass_bg"
+            android:layout_centerVertical="true"
             >
             <TextView
                 android:id="@+id/login_page_heading"
@@ -199,6 +195,6 @@
         </RelativeLayout>
 
 
-    </androidx.cardview.widget.CardView>
+    </RelativeLayout>
 
 </RelativeLayout>

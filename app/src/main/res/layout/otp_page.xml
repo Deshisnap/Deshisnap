@@ -6,13 +6,13 @@
 
     >
 
-    <androidx.cardview.widget.CardView
+    <RelativeLayout
         android:id="@+id/cardView"
-        android:layout_width="wrap_content"
+        android:layout_width="396dp"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        app:cardBackgroundColor="#00FFFFFF"
-        app:cardCornerRadius="21dp"
+        android:background="@drawable/rectangle_12"
+
         android:layout_centerVertical="true"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
@@ -21,10 +21,8 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:paddingHorizontal="10dp"
-            android:background="@color/overlay"
-
             >
 
             <RelativeLayout
@@ -233,5 +231,5 @@
 
 
         </RelativeLayout>
-    </androidx.cardview.widget.CardView>
+    </RelativeLayout>
 </RelativeLayout>

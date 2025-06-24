@@ -72,7 +72,7 @@
             android:id="@+id/location_icon"
             android:layout_width="24dp"
             android:layout_height="24dp"
-            android:src="@drawable/location_pic"
+            android:src="@drawable/location"
             android:layout_centerVertical="true"
             android:layout_marginLeft="8dp"
             >
@@ -123,7 +123,7 @@
             android:id="@+id/master_card_icon"
             android:layout_width="24dp"
             android:layout_height="24dp"
-            android:src="@drawable/master_card_icon"
+            android:src="@drawable/master_card"
             android:layout_centerVertical="true"
             android:layout_marginLeft="8dp"
             >
@@ -174,7 +174,7 @@
             android:id="@+id/wallet_icon"
             android:layout_width="24dp"
             android:layout_height="24dp"
-            android:src="@drawable/wallet_icon"
+            android:src="@drawable/wallet_outline"
             android:layout_centerVertical="true"
             android:layout_marginLeft="8dp"
             >
@@ -225,7 +225,7 @@
             android:id="@+id/setting_icon"
             android:layout_width="24dp"
             android:layout_height="24dp"
-            android:src="@drawable/setting_icon"
+            android:src="@drawable/symbols_settings"
             android:layout_centerVertical="true"
             android:layout_marginLeft="8dp"
             >
@@ -275,7 +275,7 @@
             android:id="@+id/service_icon"
             android:layout_width="24dp"
             android:layout_height="24dp"
-            android:src="@drawable/service_icon"
+            android:src="@drawable/support_care"
             android:layout_centerVertical="true"
             android:layout_marginLeft="8dp"
             >
@@ -325,7 +325,7 @@
             android:id="@+id/about_us_icon"
             android:layout_width="24dp"
             android:layout_height="24dp"
-            android:src="@drawable/about_us_icon"
+            android:src="@drawable/ix_about"
             android:layout_centerVertical="true"
             android:layout_marginLeft="8dp"
             >
