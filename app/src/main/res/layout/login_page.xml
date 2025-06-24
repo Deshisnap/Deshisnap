@@ -64,11 +64,13 @@
                     android:backgroundTint="@color/white"
                     android:hint="Enter Your Phone Number"
                     android:textColorHint="@color/black"
+                    android:textColor="@color/black"
                     android:paddingStart="12dp"
                     android:background="@drawable/edit_text_dark_bg"
-                    android:inputType="textPersonName"
+                    android:inputType="number"
                     android:layout_below="@id/first_name_heading"
                     android:layout_marginBottom="20dp"
+
                     />
 
                 <TextView
@@ -84,6 +86,7 @@
                     android:layout_centerHorizontal="true"
                     android:textAlignment="center"
                     android:padding="5dp"
+
                     >
 
                 </TextView>

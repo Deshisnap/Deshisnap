@@ -80,7 +80,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="48dp"
                     android:backgroundTint="@color/otp_box_colour"
-                    android:hint="Enter First Name"
+                    android:hint="Enter Last Name"
                     android:textColorHint="#C1FFFFFF"
                     android:textColor="@color/white"
                     android:paddingStart="12dp"
@@ -158,7 +158,7 @@
                         android:paddingLeft="25dp"
                         android:paddingRight="25dp"
                         android:background="@drawable/edit_text_dark_bg"
-                        android:inputType="textPersonName"
+                        android:inputType="number"
                         android:layout_alignParentEnd="true"
                         />
 
