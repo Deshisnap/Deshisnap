@@ -111,7 +111,7 @@
                     android:textColor="@color/white"
                     android:paddingStart="12dp"
                     android:background="@drawable/edit_text_dark_bg"
-                    android:inputType="textPersonName"
+                    android:inputType="textEmailAddress"
                     android:layout_below="@id/email_address_heading"
                     />
 
