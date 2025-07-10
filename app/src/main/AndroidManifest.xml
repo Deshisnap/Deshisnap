@@ -13,12 +13,11 @@
         android:theme="@style/Theme.MyApplication"
         tools:targetApi="31">
         <activity
+            android:name=".ServiceDetailActivity"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
-            android:exported="true">
-
-        </activity>
-
-
+            android:exported="true"></activity>
         <activity
             android:name=".SplashScreenActivity"
             android:exported="true">
@@ -28,7 +27,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity android:name=".BookingActivity" />
         <activity android:name=".NotificationPage" />
         <activity android:name=".Profile_page" />
@@ -37,7 +35,6 @@
         <activity android:name=".Booking_Time_QR_Page" />
         <activity android:name=".LoginPage" />
         <activity android:name=".Registration_page" />
-
     </application>
 
 </manifest>

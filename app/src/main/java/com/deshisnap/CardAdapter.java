@@ -1,53 +1,67 @@
 package com.deshisnap;
 
+import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
 import java.util.List;
+
+import ads_mobile_sdk.v7;
 
 public class CardAdapter extends RecyclerView.Adapter<CardAdapter.CardViewHolder> {
 
-    private List<CardItem> cardList;
+    private List<Service> serviceList;
+    private Context context;
 
-    public CardAdapter(List<CardItem> cardList) {
-        this.cardList = cardList;
+    public CardAdapter(List<Service> serviceList) {
+        this.serviceList = serviceList;
+    }
+
+    @NonNull
+    @Override
+    public CardViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.card_with_image, parent, false);
+        context = parent.getContext();
+        return new CardViewHolder(view);
+    }
+
+    @Override
+    public void onBindViewHolder(@NonNull CardViewHolder holder, int position) {
+        Service currentService = serviceList.get(position);
+
+        holder.imageView.setImageResource(currentService.getImageResId());
+        holder.textView.setText(currentService.getName());
+
+        holder.itemView.setOnClickListener(v -> {
+            Intent intent = new Intent(context, ServiceDetailActivity.class);
+
+            // VERIFY THIS LINE: Putting the Service object as Serializable
+            intent.putExtra("SERVICE_OBJECT", currentService); // Key must be "SERVICE_OBJECT"
+
+            context.startActivity(intent);
+        });
+    }
+
+    @Override
+    public int getItemCount() {
+        return serviceList.size();
     }
 
     public static class CardViewHolder extends RecyclerView.ViewHolder {
         ImageView imageView;
         TextView textView;
 
-        public CardViewHolder(View itemView) {
+        public CardViewHolder(@NonNull View itemView) {
             super(itemView);
             imageView = itemView.findViewById(R.id.cardImage);
             textView = itemView.findViewById(R.id.cardText);
         }
     }
-
-    @Override
-    public CardViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.card_with_image, parent, false);
-
-        return new CardViewHolder(view);
-    }
-
-    @Override
-    public void onBindViewHolder(CardViewHolder holder, int position) {
-        CardItem item = cardList.get(position);
-        holder.imageView.setImageResource(item.getImageRes());
-        holder.textView.setText(item.getText());
-        Utils.applyGradientToText(holder.textView, "#04FDAA", "#01D3F8");
-    }
-
-    @Override
-    public int getItemCount() {
-        return cardList.size();
-    }
-
-
 }
-

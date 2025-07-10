@@ -6,7 +6,7 @@ plugins {
 
 android {
     namespace = "com.deshisnap"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "com.deshisnap"
@@ -67,6 +67,8 @@ dependencies {
     implementation(libs.androidx.navigation.ui)
     implementation(libs.firebase.auth)
     implementation(libs.firebase.database)
+    implementation(libs.androidx.activity)
+    implementation(libs.ads.mobile.sdk)
     testImplementation(libs.junit)
     implementation ("androidx.core:core-ktx:1.12.0")
     implementation ("androidx.activity:activity-ktx:1.8.0")

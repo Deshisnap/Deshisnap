@@ -12,12 +12,11 @@
 
     <string name="font">sans-serif</string>
 
-     <string-array name="status_options">
+    <string-array name="status_options">
         <item>Pending</item>
         <item>Received</item>
         <item>Rejected</item>
     </string-array>
-
 
 
 </resources>

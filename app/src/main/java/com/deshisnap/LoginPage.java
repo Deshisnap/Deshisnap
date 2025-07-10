@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -40,7 +41,7 @@ public class LoginPage extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private DatabaseReference mDatabase;
     private EditText phoneNumberInput;
-    private TextView sendOtpButton, googleLoginButton, whatsappLoginButton;
+    private TextView sendOtpButton, googleLoginButton, whatsappLoginButton,notAuser;
     private GoogleSignInClient mGoogleSignInClient;
 
     @SuppressLint("WrongViewCast")
@@ -51,6 +52,17 @@ public class LoginPage extends AppCompatActivity {
 
         TextView login_page_heading = findViewById(R.id.login_page_heading);
         Utils.applyGradientToText(login_page_heading, "#FFFFFF", "#FFFFFF");
+
+        notAuser = findViewById(R.id.not_a_user);
+        notAuser.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Go to registration page
+                Intent intent = new Intent(LoginPage.this, Registration_page.class);
+                startActivity(intent);
+            }
+        });
+
 
         mAuth = FirebaseAuth.getInstance();
         mDatabase = FirebaseDatabase.getInstance().getReference();
