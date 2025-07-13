@@ -69,6 +69,7 @@ dependencies {
     implementation(libs.firebase.database)
     implementation(libs.androidx.activity)
     implementation(libs.ads.mobile.sdk)
+    implementation(libs.firebase.storage)
     testImplementation(libs.junit)
     implementation ("androidx.core:core-ktx:1.12.0")
     implementation ("androidx.activity:activity-ktx:1.8.0")

@@ -196,7 +196,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         findViewById(R.id.booking_button).setOnClickListener(v -> {
-            startActivity(new Intent(MainActivity.this, BookingActivity.class));
+            startActivity(new Intent(MainActivity.this, BookingTimePage.class));
         });
         findViewById(R.id.inbox_button).setOnClickListener(v -> {
             startActivity(new Intent(MainActivity.this, NotificationPage.class));

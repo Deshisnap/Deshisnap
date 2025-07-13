@@ -39,7 +39,7 @@ public class CartPage extends AppCompatActivity {
         });
 
         findViewById(R.id.book_a_slot_button).setOnClickListener(v -> {
-            startActivity(new Intent(CartPage.this, Booking_Time_QR_Page.class));
+            startActivity(new Intent(CartPage.this, BookingTimePage.class));
             finish();
         });
 
