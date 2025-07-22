@@ -2,12 +2,7 @@
 package com.deshisnap;
 
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.LinearGradient;
-import android.graphics.Shader;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
@@ -17,6 +12,11 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.LinearLayoutManager; // Import this
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.deshisnap.Booking_page.BookingsStatusDetails;
+import com.deshisnap.cart_page.CardAdapter;
+import com.deshisnap.service_related_work.Service;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -192,11 +192,11 @@ public class MainActivity extends AppCompatActivity {
 
         // --- Bottom Navigation Button Listeners ---
         findViewById(R.id.cart_img).setOnClickListener(v -> {
-            startActivity(new Intent(MainActivity.this, CartPage.class));
+            startActivity(new Intent(MainActivity.this, com.deshisnap.cart_page.CartPage.class));
         });
 
         findViewById(R.id.booking_button).setOnClickListener(v -> {
-            startActivity(new Intent(MainActivity.this, BookingTimePage.class));
+            startActivity(new Intent(MainActivity.this, BookingsStatusDetails.class));
         });
         findViewById(R.id.inbox_button).setOnClickListener(v -> {
             startActivity(new Intent(MainActivity.this, NotificationPage.class));

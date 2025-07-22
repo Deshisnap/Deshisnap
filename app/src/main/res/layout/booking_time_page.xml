@@ -5,7 +5,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/booking_time_page_root"
-    tools:context=".BookingTimePage"
+    tools:context=".Booking_page.BookingTimePage"
     android:background="@color/appHometheme">
 
     <RelativeLayout

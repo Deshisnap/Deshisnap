@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/appHometheme"
     android:id="@+id/booking_summary_root"
-    tools:context=".BookingSummaryActivity">
+    tools:context=".Booking_page.BookingSummaryActivity">
 
     <RelativeLayout
         android:id="@+id/header_layout"

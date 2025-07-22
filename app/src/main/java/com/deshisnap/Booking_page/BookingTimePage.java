@@ -1,4 +1,4 @@
-package com.deshisnap;
+package com.deshisnap.Booking_page;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,6 +13,10 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.activity.EdgeToEdge;
+
+import com.deshisnap.MainActivity;
+import com.deshisnap.R;
+import com.deshisnap.service_related_work.Service;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;

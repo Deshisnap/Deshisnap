@@ -1,4 +1,4 @@
-package com.deshisnap;
+package com.deshisnap.service_related_work;
 
 import java.io.Serializable; // Important: Make it Serializable to pass the object easily via Intent
 

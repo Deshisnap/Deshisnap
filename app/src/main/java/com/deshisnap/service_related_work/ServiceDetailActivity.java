@@ -1,4 +1,4 @@
-package com.deshisnap;
+package com.deshisnap.service_related_work;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,6 +11,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 // Firebase Imports
+import com.deshisnap.Booking_page.BookingTimePage;
+import com.deshisnap.R;
+import com.deshisnap.cart_page.SimpleCartItem;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.auth.FirebaseAuth; // <-- Import FirebaseAuth
@@ -98,6 +101,7 @@ public class ServiceDetailActivity extends AppCompatActivity {
 
                     if (cartItemId != null) {
                         // Save the cart item under the user's ID
+                        cartItem.setCartItemId(cartItemId); // <-- Set the cartItemId
                         cartDatabaseRef.child(userId).child(cartItemId).setValue(cartItem)
                                 .addOnSuccessListener(aVoid -> {
                                     Toast.makeText(ServiceDetailActivity.this, currentService.getName() + " added to cart!", Toast.LENGTH_SHORT).show();

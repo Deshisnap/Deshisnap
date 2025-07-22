@@ -1,4 +1,4 @@
-package com.deshisnap;
+package com.deshisnap.Booking_page;
 
 import android.Manifest;
 import android.content.Intent;
@@ -24,6 +24,9 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
+import com.deshisnap.MainActivity;
+import com.deshisnap.R;
+import com.deshisnap.service_related_work.Service;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;

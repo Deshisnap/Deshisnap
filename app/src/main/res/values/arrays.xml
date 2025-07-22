@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="time_slots">
+        <item>Select Time Slot</item>
+        <item>07:00 AM - 08:00 AM</item>
+        <item>08:00 AM - 09:00 AM</item>
+        <item>09:00 AM - 10:00 AM</item>
+        <item>10:00 AM - 11:00 AM</item>
+        <item>11:00 AM - 12:00 PM</item>
+        <item>12:00 PM - 01:00 PM</item>
+        <item>01:00 PM - 02:00 PM</item>
+        <item>02:00 PM - 03:00 PM</item>
+        <item>03:00 PM - 04:00 PM</item>
+        <item>04:00 PM - 05:00 PM</item>
+        <item>05:00 PM - 06:00 PM</item>
+        <item>06:00 PM - 07:00 PM</item>
+        <item>07:00 PM - 08:00 PM</item>
+    </string-array>
+</resources>
