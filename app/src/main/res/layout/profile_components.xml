@@ -5,62 +5,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:background="@color/appHometheme">
 
-    <RelativeLayout
-        android:id="@+id/profile_button"
-        android:layout_width="match_parent"
-        android:layout_height="52dp"
-        android:clickable="true"
-        android:focusable="true"
-        tools:ignore="TouchTargetSizeCheck"
-        android:background="@drawable/ripple_bg"
 
-
-        >
-
-        <ImageView
-            android:id="@+id/imgsrc"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:src="@drawable/el_list_alt"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="8dp"
-            >
-        </ImageView>
-
-        <TextView
-            android:id="@+id/profile_component_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="16sp"
-            android:text="My Plans"
-            android:layout_marginLeft="38dp"
-            android:textFontWeight="400"
-            android:fontFamily="sans-serif"
-            android:textColor="@color/white"
-            android:layout_toRightOf="@id/imgsrc"
-            android:layout_centerVertical="true"
-            >
-
-        </TextView>
-
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:src="@drawable/arrow_mark"
-            android:layout_centerVertical="true"
-            android:paddingRight="15dp"
-            >
-        </ImageView>
-    </RelativeLayout>
 
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="52dp"
         android:id="@+id/manage_address_button"
-        android:layout_below="@id/profile_button"
         android:layout_marginTop="8dp"
         android:clickable="true"
         android:focusable="true"
@@ -107,113 +58,17 @@
     </RelativeLayout>
 
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="52dp"
-        android:id="@+id/manage_payment_button"
-        android:layout_below="@id/manage_address_button"
-        android:layout_marginTop="8dp"
-        android:clickable="true"
-        android:focusable="true"
-        tools:ignore="TouchTargetSizeCheck"
-        android:background="@drawable/ripple_bg"
-        >
-
-        <ImageView
-            android:id="@+id/master_card_icon"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:src="@drawable/master_card"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="8dp"
-            >
-        </ImageView>
-
-        <TextView
-            android:id="@+id/payment_manage_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="16sp"
-            android:text="Manage Payment"
-            android:layout_marginLeft="38dp"
-            android:textFontWeight="400"
-            android:fontFamily="sans-serif"
-            android:textColor="@color/white"
-            android:layout_toRightOf="@id/master_card_icon"
-            android:layout_centerVertical="true"
-            >
-
-        </TextView>
 
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:src="@drawable/arrow_mark"
-            android:layout_centerVertical="true"
-            android:paddingRight="15dp"
-            >
-        </ImageView>
-    </RelativeLayout>
 
 
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="52dp"
-        android:id="@+id/wallet_button"
-        android:layout_below="@id/manage_payment_button"
-        android:layout_marginTop="8dp"
-        android:clickable="true"
-        android:focusable="true"
-        tools:ignore="TouchTargetSizeCheck"
-        android:background="@drawable/ripple_bg"
-        >
-
-        <ImageView
-            android:id="@+id/wallet_icon"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:src="@drawable/wallet_outline"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="8dp"
-            >
-        </ImageView>
-
-        <TextView
-            android:id="@+id/wallet_text"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="16sp"
-            android:text="Wallet"
-            android:layout_marginLeft="38dp"
-            android:textFontWeight="400"
-            android:fontFamily="sans-serif"
-            android:textColor="@color/white"
-            android:layout_toRightOf="@id/wallet_icon"
-            android:layout_centerVertical="true"
-            >
-
-        </TextView>
-
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:src="@drawable/arrow_mark"
-            android:layout_centerVertical="true"
-            android:paddingRight="15dp"
-            >
-        </ImageView>
-    </RelativeLayout>
 
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="52dp"
         android:id="@+id/setting_button"
-        android:layout_below="@id/wallet_button"
+        android:layout_below="@id/manage_address_button"
         android:layout_marginTop="8dp"
         android:clickable="true"
         android:focusable="true"

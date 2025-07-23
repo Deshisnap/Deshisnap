@@ -203,7 +203,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         findViewById(R.id.profile_button).setOnClickListener(v -> {
-            startActivity(new Intent(MainActivity.this, Profile_page.class));
+            startActivity(new Intent(MainActivity.this, ProfileActivity.class));
         });
     }
 }

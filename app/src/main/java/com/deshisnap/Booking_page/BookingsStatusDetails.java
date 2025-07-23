@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.deshisnap.BookingAdapter;
 import com.deshisnap.cart_page.CartPage;
 import com.deshisnap.NotificationPage;
-import com.deshisnap.Profile_page;
+import com.deshisnap.ProfileActivity;
 import com.deshisnap.R;
 import com.deshisnap.Utils;
 
@@ -48,7 +48,7 @@ public class BookingsStatusDetails extends AppCompatActivity {
         });
 
         findViewById(R.id.profile_button).setOnClickListener(v -> {
-            startActivity(new Intent(BookingsStatusDetails.this, Profile_page.class));
+            startActivity(new Intent(BookingsStatusDetails.this, ProfileActivity.class));
             finish();
         });
 

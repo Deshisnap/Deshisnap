@@ -33,7 +33,7 @@ public class NotificationPage extends AppCompatActivity {
             finish();
         });
         findViewById(R.id.profile_button).setOnClickListener(v -> {
-            startActivity(new Intent(NotificationPage.this, Profile_page.class));
+            startActivity(new Intent(NotificationPage.this, ProfileActivity.class));
             finish();
         });
 
