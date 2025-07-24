@@ -17,7 +17,7 @@ import com.deshisnap.BookingConfirmationActivity;
 import com.deshisnap.Booking_page.BookingsStatusDetails;
 import com.deshisnap.LoginPage;
 import com.deshisnap.MainActivity;
-import com.deshisnap.NotificationPage;
+import com.deshisnap.UserNotificationPage;
 import com.deshisnap.R;
 import com.deshisnap.Utils;
 import com.google.firebase.auth.FirebaseAuth;
@@ -151,7 +151,7 @@ public class CartPage extends AppCompatActivity implements CartAdapter.OnItemDel
             finish();
         });
         findViewById(R.id.inbox_button).setOnClickListener(v -> {
-            startActivity(new Intent(CartPage.this, NotificationPage.class));
+            startActivity(new Intent(CartPage.this, UserNotificationPage.class));
             finish();
         });
 

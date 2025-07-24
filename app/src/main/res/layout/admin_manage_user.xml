@@ -22,36 +22,6 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <RelativeLayout
-                android:id="@+id/relativeLayout"
-                android:layout_width="match_parent"
-                android:layout_height="49dp">
-
-                <TextView
-                    android:id="@+id/textView2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentStart="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginLeft="10dp"
-                    android:fontFamily="sans-serif"
-                    android:text="Address"
-                    android:textColor="@color/white"
-                    android:textFontWeight="700"
-                    android:textSize="16sp" /> <!-- use sp for textSize -->
-
-                <ImageView
-                    android:id="@+id/cart_img"
-                    android:layout_width="48dp"
-                    android:layout_height="48dp"
-                    android:layout_alignParentEnd="true"
-                    android:layout_centerVertical="false"
-                    android:layout_marginRight="16dp"
-                    android:paddingTop="10dp"
-                    android:src="@drawable/shopping_cart" />
-
-            </RelativeLayout>
-
             <include
                 android:id="@+id/search_bar"
                 layout="@layout/searchbar"
@@ -137,10 +107,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             >  <!-- ensures it sits above the ScrollView -->
 
-            <include layout="@layout/navbar"
-                android:layout_height="match_parent"
-                android:layout_width="match_parent"
-                android:id="@+id/bottom_navigation" />
+
 
 
         </LinearLayout>

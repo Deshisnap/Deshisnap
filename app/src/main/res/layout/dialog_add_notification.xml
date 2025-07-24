@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="@drawable/dialog_background"> <TextView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:text="Add New Notification"
+    android:textSize="22sp"
+    android:textColor="@color/white"
+    android:textStyle="bold"
+    android:paddingBottom="12dp"
+    android:gravity="center" />
+
+    <EditText
+        android:id="@+id/et_notification_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Notification Title"
+        android:textColorHint="@color/white"
+        android:textColor="@color/white"
+        android:backgroundTint="@color/white"
+        android:inputType="textCapSentences"
+        android:maxLines="1"
+        android:singleLine="true"
+        android:layout_marginBottom="8dp" />
+
+    <EditText
+        android:id="@+id/et_notification_message"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Notification Message"
+        android:textColorHint="@color/white"
+        android:textColor="@color/white"
+        android:backgroundTint="@color/white"
+        android:inputType="textMultiLine"
+        android:minLines="3"
+        android:maxLines="6"
+        android:gravity="top|start"
+        android:scrollbars="vertical"
+        android:layout_marginBottom="16dp" />
+
+    <EditText
+        android:id="@+id/et_notification_image_url"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Image URL (Optional)"
+        android:textColorHint="@color/white"
+        android:textColor="@color/white"
+        android:backgroundTint="@color/white"
+        android:inputType="textUri"
+        android:layout_marginBottom="16dp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="end">
+
+        <Button
+            android:id="@+id/btn_cancel_notification"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cancel"
+            android:textColor="@color/white"
+            android:backgroundTint="#FF4444"
+            android:layout_marginEnd="8dp" />
+
+        <Button
+            android:id="@+id/btn_add_notification_dialog"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Add Notification"
+            android:textColor="@color/white"
+            android:backgroundTint="#03FBAD" />
+    </LinearLayout>
+
+</LinearLayout>

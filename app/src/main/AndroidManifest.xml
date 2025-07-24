@@ -14,11 +14,21 @@ xmlns:tools="http://schemas.android.com/tools">
     <activity
         android:name=".ContactUsActivity"
         android:exported="false" />
+
+    <activity
+        android:name=".ManageUsersActivity"
+        android:exported="false" />
     <activity
         android:name=".BookingConfirmationActivity"
         android:exported="false" />
     <activity
         android:name=".cart_page.CartPage"
+        android:exported="false" />
+    <activity
+        android:name=".admin_dashboard"
+        android:exported="false" />
+    <activity
+        android:name=".SendNotificationActivity"
         android:exported="false" />
     <activity
         android:name=".Booking_page.BookingSummaryActivity"
@@ -42,7 +52,7 @@ xmlns:tools="http://schemas.android.com/tools">
         </intent-filter>
     </activity>
     <activity android:name=".Booking_page.BookingsStatusDetails" />
-    <activity android:name=".NotificationPage" />
+    <activity android:name=".UserNotificationPage" />
     <activity android:name=".ProfileActivity" />
     <activity android:name=".OtpPage" />
     <activity android:name=".LoginPage" />

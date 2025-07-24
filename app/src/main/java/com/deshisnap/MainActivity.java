@@ -65,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
                 "Plumber",
                 "Reliable and certified plumbing solutions for your home and office.",
                 "Our expert plumbers are available 24/7 to handle all types of plumbing emergencies and routine maintenance. From fixing leaky pipes and clogged drains to installing new fixtures and water heaters, we provide comprehensive services with a focus on quality and customer satisfaction. All our technicians are background-checked and fully insured for your peace of mind. We use only high-quality materials and offer transparent pricing with no hidden fees.",
-                "₹ 500 onwards",
+                "₹150/sq ft onwards",
                 "4.8 (250 reviews)",
                 "- Leak detection & repair\n- Drain cleaning & unclogging\n- Faucet & toilet installation\n- Water heater repair & installation\n- Pipe fitting & replacement"
         ));
@@ -76,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
                 "Electrician",
                 "Safe and efficient electrical repairs and installations.",
                 "Certified electricians for all your residential and commercial electrical needs. Services include wiring, fuse box repair, new outlet installation, lighting solutions, and fault detection. We ensure adherence to safety standards and provide prompt, reliable service. Emergency call-outs available.",
-                "₹ 400 onwards",
+                "₹150/sq ft onwards",
                 "4.7 (180 reviews)",
                 "- Wiring & rewiring\n- Fuse/circuit breaker repair\n- Outlet & switch installation\n- Lighting solutions\n- Electrical inspections"
         ));
@@ -87,7 +87,7 @@ public class MainActivity extends AppCompatActivity {
                 "Painter",
                 "Professional painting services for a fresh new look.",
                 "Transform your space with our professional painting services. We offer interior and exterior painting, wall preparation, texture painting, and custom color matching. Our experienced painters ensure a smooth finish and a clean work environment. Free consultation and color guidance available.",
-                "₹ 15/sq ft onwards",
+                "₹ 10/sq ft onwards",
                 "4.9 (120 reviews)",
                 "- Interior & exterior painting\n- Wall preparation (putty, primer)\n- Texture painting\n- Wallpaper removal\n- Damage repair & touch-ups"
         ));
@@ -98,7 +98,7 @@ public class MainActivity extends AppCompatActivity {
                 "Carpenter",
                 "Skilled carpentry for furniture repair, custom work, and installations.",
                 "Expert carpenters providing a wide range of services including furniture repair, custom furniture design, modular kitchen installation, door/window fitting, and wooden partition work. We combine craftsmanship with modern tools to deliver durable and aesthetically pleasing results.",
-                "₹ 300 onwards (per hour)",
+                "₹180/sq ft onwards",
                 "4.6 (150 reviews)",
                 "- Furniture repair & assembly\n- Custom furniture design\n- Door & window installation\n- Cabinetry & shelving\n- Wooden flooring repair"
         ));
@@ -109,7 +109,7 @@ public class MainActivity extends AppCompatActivity {
                 "AC Technician",
                 "Expert AC repair, service, and installation.",
                 "Professional AC technicians for all brands and types of air conditioners. Services include routine servicing, gas refilling, repairs of common issues like cooling problems or leakage, and new AC installation. Extend the life of your AC with our reliable and timely service.",
-                "₹ 600 onwards",
+                "₹ 599 per washing",
                 "4.7 (200 reviews)",
                 "- AC servicing & cleaning\n- Gas refilling\n- Compressor repair\n- Installation & uninstallation\n- Troubleshooting & diagnostics"
         ));
@@ -140,7 +140,7 @@ public class MainActivity extends AppCompatActivity {
                 "House Cleaning",
                 "Professional deep cleaning services for sparkling homes.",
                 "Comprehensive house cleaning services for residential properties. Includes deep cleaning of kitchens, bathrooms, living areas, and bedrooms. Our trained staff use eco-friendly products and advanced equipment to ensure a hygienic and spotless environment. Customizable cleaning packages available.",
-                "₹ 1200 onwards",
+                "₹5/sq ft onwards",
                 "4.9 (300 reviews)",
                 "- Full home deep cleaning\n- Kitchen & bathroom sanitization\n- Floor scrubbing & polishing\n- Dusting & vacuuming\n- Window cleaning"
         ));
@@ -151,7 +151,7 @@ public class MainActivity extends AppCompatActivity {
                 "Beautician",
                 "At-home beauty services for your convenience.",
                 "Experience salon-quality beauty services at the comfort of your home. Our certified beauticians offer a wide range of services including facials, waxing, manicure, pedicure, hair styling, and bridal makeup. Using branded products for best results.",
-                "₹ 350 onwards",
+                "₹12000 bridal package",
                 "4.7 (280 reviews)",
                 "- Facials & skincare\n- Waxing & threading\n- Manicure & Pedicure\n- Hair styling & treatments\n- Bridal & party makeup"
         ));
@@ -171,7 +171,7 @@ public class MainActivity extends AppCompatActivity {
                 "Tourist Guide",
                 "Explore the city with knowledgeable local guides.",
                 "Discover the hidden gems and rich history of Bhubaneswar with our experienced tourist guides. We offer personalized tours for individuals and groups, covering historical sites, cultural landmarks, and local culinary experiences. Multi-lingual guides available upon request.",
-                "₹ 1000 onwards (per day)",
+                "Custom Quote",
                 "4.9 (95 reviews)",
                 "- City tours & sightseeing\n- Historical site explanations\n- Cultural immersion\n- Food tours\n- Custom itineraries"
         ));
@@ -182,7 +182,7 @@ public class MainActivity extends AppCompatActivity {
                 "Interior Designer",
                 "Create your dream space with expert interior design.",
                 "Transform your home or office with our creative and functional interior design solutions. From conceptualization to execution, we handle space planning, furniture selection, lighting, color schemes, and material sourcing. Residential and commercial projects undertaken.",
-                "Custom Quote",
+                "150/sq ft onwards",
                 "4.8 (70 reviews)",
                 "- Space planning\n- Furniture & decor selection\n- Color consultation\n- Lighting design\n- 3D rendering & visualization"
         ));
@@ -199,7 +199,7 @@ public class MainActivity extends AppCompatActivity {
             startActivity(new Intent(MainActivity.this, BookingsStatusDetails.class));
         });
         findViewById(R.id.inbox_button).setOnClickListener(v -> {
-            startActivity(new Intent(MainActivity.this, NotificationPage.class));
+            startActivity(new Intent(MainActivity.this, UserNotificationPage.class));
         });
 
         findViewById(R.id.profile_button).setOnClickListener(v -> {

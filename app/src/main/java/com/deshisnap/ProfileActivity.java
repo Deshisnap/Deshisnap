@@ -148,7 +148,7 @@ public class ProfileActivity extends AppCompatActivity {
             Toast.makeText(ProfileActivity.this, "You are already on the Profile Page!", Toast.LENGTH_SHORT).show();
         });
         findViewById(R.id.inbox_button).setOnClickListener(v -> {
-            startActivity(new Intent(ProfileActivity.this, NotificationPage.class));
+            startActivity(new Intent(ProfileActivity.this, UserNotificationPage.class));
             finish();
         });
         findViewById(R.id.book_a_slot_button).setOnClickListener(v -> {
