@@ -17,6 +17,13 @@ import com.deshisnap.Booking_page.BookingsStatusDetails;
 import com.deshisnap.cart_page.CardAdapter;
 import com.deshisnap.cart_page.CartPage;
 import com.deshisnap.service_related_work.Service;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -53,6 +60,25 @@ public class MainActivity extends AppCompatActivity {
         TextView lifestyle_text = findViewById(R.id.lifestyle_text);
         Utils.applyGradientToText(lifestyle_text, "#04FDAA", "#01D3F8");
         //gradiant over
+
+        // Header location text (replace 'Address' with user's locality)
+        TextView headerLocation = findViewById(R.id.textView2);
+        if (headerLocation != null) {
+            FirebaseUser u = FirebaseAuth.getInstance().getCurrentUser();
+            if (u != null) {
+                DatabaseReference locRef = FirebaseDatabase.getInstance().getReference("users").child(u.getUid()).child("location");
+                locRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override public void onDataChange(DataSnapshot snapshot) {
+                        String loc = snapshot.getValue(String.class);
+                        headerLocation.setText((loc == null || loc.trim().isEmpty()) ? "Please share your locality" : loc);
+                    }
+                    @Override public void onCancelled(DatabaseError error) { headerLocation.setText("Please share your locality"); }
+                });
+            } else {
+                headerLocation.setText("Please share your locality");
+            }
+            headerLocation.setOnClickListener(v -> startActivity(new Intent(MainActivity.this, ProfileActivity.class)));
+        }
 
         // --- Home Maintenance & Repair Services ---
         RecyclerView homemaintain = findViewById(R.id.homemaintain_scroll);

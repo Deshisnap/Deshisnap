@@ -51,6 +51,24 @@ public class BookingsStatusDetails extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
         emptyText = findViewById(R.id.empty_text);
 
+        // Header location text
+        TextView headerLocation = findViewById(R.id.textView2);
+        FirebaseUser uLoc = FirebaseAuth.getInstance().getCurrentUser();
+        if (headerLocation != null) {
+            if (uLoc != null) {
+                DatabaseReference locRef = FirebaseDatabase.getInstance().getReference("users").child(uLoc.getUid()).child("location");
+                locRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        String loc = snapshot.getValue(String.class);
+                        headerLocation.setText((loc == null || loc.trim().isEmpty()) ? "Please share your locality" : loc);
+                    }
+                    @Override public void onCancelled(@NonNull DatabaseError error) { headerLocation.setText("Please share your locality"); }
+                });
+            } else {
+                headerLocation.setText("Please share your locality");
+            }
+        }
+
         findViewById(R.id.cart_img).setOnClickListener(v -> startActivity(new Intent(BookingsStatusDetails.this, CartPage.class)));
         findViewById(R.id.home_button).setOnClickListener(v -> finish());
         findViewById(R.id.inbox_button).setOnClickListener(v -> {

@@ -59,6 +59,27 @@ public class UserNotificationPage extends AppCompatActivity {
         // This will apply the gradient to the "Notifications" heading
         Utils.applyGradientToText(notification_page_heading, "#04FDAA", "#01D3F8");
 
+        // Header location text
+        TextView headerLocation = findViewById(R.id.textView2);
+        FirebaseUser u = com.google.firebase.auth.FirebaseAuth.getInstance().getCurrentUser();
+        if (headerLocation != null) {
+            if (u != null) {
+                com.google.firebase.database.FirebaseDatabase.getInstance()
+                        .getReference("users").child(u.getUid()).child("location")
+                        .addListenerForSingleValueEvent(new com.google.firebase.database.ValueEventListener() {
+                            @Override public void onDataChange(@NonNull com.google.firebase.database.DataSnapshot snapshot) {
+                                String loc = snapshot.getValue(String.class);
+                                headerLocation.setText((loc == null || loc.trim().isEmpty()) ? "Please share your locality" : loc);
+                            }
+                            @Override public void onCancelled(@NonNull com.google.firebase.database.DatabaseError error) {
+                                headerLocation.setText("Please share your locality");
+                            }
+                        });
+            } else {
+                headerLocation.setText("Please share your locality");
+            }
+        }
+
         // Click listener for the cart image
         findViewById(R.id.cart_img).setOnClickListener(v -> {
             startActivity(new Intent(UserNotificationPage.this, CartPage.class));

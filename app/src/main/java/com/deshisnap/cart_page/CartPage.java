@@ -91,6 +91,20 @@ public class CartPage extends AppCompatActivity implements CartAdapter.OnItemDel
             return;
         }
 
+        // Header location text (replace 'Address' with user's locality)
+        TextView headerLocation = findViewById(R.id.textView2);
+        if (headerLocation != null) {
+            DatabaseReference locRef = FirebaseDatabase.getInstance().getReference("users").child(currentUser.getUid()).child("location");
+            locRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override public void onDataChange(DataSnapshot snapshot) {
+                    String loc = snapshot.getValue(String.class);
+                    headerLocation.setText((loc == null || loc.trim().isEmpty()) ? "Please share your locality" : loc);
+                }
+                @Override public void onCancelled(DatabaseError error) { headerLocation.setText("Please share your locality"); }
+            });
+            headerLocation.setOnClickListener(v -> startActivity(new Intent(CartPage.this, ProfileActivity.class)));
+        }
+
         // Initialize Firebase Database References
         cartItemsRef = FirebaseDatabase.getInstance().getReference("carts").child(currentUser.getUid());
         adminOffersRef = FirebaseDatabase.getInstance().getReference("admin_data").child("offers");
