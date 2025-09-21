@@ -112,12 +112,23 @@
 
 
                 <!--   all  content-->
+                <Spinner
+                    android:id="@+id/status_filter_spinner"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/strokebar"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    android:layout_marginBottom="12dp"
+                    android:background="@drawable/rounded_edittext_background"
+                    android:popupBackground="#A9A9A9"
+                    />
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/booking_recycler"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/strokebar"
+                    android:layout_below="@id/status_filter_spinner"
                     />
 
                 <!-- use admin_booking_status_card -->

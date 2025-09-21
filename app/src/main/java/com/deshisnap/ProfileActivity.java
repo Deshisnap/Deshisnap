@@ -173,6 +173,16 @@ public class ProfileActivity extends AppCompatActivity {
         findViewById(R.id.demoprofilecomponent).findViewById(R.id.about_us_button).setOnClickListener(v -> {
             Toast.makeText(ProfileActivity.this, "About Us Clicked!", Toast.LENGTH_SHORT).show();
         });
+
+        // Logout: sign out and redirect to LoginPage
+        findViewById(R.id.demoprofilecomponent).findViewById(R.id.logout_button).setOnClickListener(v -> {
+            FirebaseAuth.getInstance().signOut();
+            Toast.makeText(ProfileActivity.this, "Logged out", Toast.LENGTH_SHORT).show();
+            Intent i = new Intent(ProfileActivity.this, LoginPage.class);
+            i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(i);
+            finish();
+        });
     }
 
 

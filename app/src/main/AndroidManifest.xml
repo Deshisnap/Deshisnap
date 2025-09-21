@@ -18,6 +18,15 @@ xmlns:tools="http://schemas.android.com/tools">
     <activity
         android:name=".ManageUsersActivity"
         android:exported="false" />
+
+    <activity
+        android:name=".AdminViewBookingsActivity"
+        android:exported="false" />
+
+
+    <activity
+        android:name=".AdminLoginActivity"
+        android:exported="false" />
     <activity
         android:name=".BookingConfirmationActivity"
         android:exported="false" />

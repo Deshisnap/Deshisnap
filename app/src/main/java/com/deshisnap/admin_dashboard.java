@@ -25,7 +25,7 @@ public class admin_dashboard extends AppCompatActivity {
 
         // Set OnClickListeners to directly launch respective activities
         tvViewBookings.setOnClickListener(v -> {
-            startActivity(new Intent(admin_dashboard.this, ViewBookingsActivity.class));
+            startActivity(new Intent(admin_dashboard.this, AdminViewBookingsActivity.class));
         });
 
         tvManageUsers.setOnClickListener(v -> {

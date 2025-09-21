@@ -59,6 +59,48 @@
 
 
 
+    <!-- Logout Row -->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="52dp"
+        android:id="@+id/logout_button"
+        android:layout_below="@id/about_us_button"
+        android:layout_marginTop="8dp"
+        android:clickable="true"
+        android:focusable="true"
+        tools:ignore="TouchTargetSizeCheck"
+        android:background="@drawable/ripple_bg">
+
+        <ImageView
+            android:id="@+id/logout_icon"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="8dp" />
+
+        <TextView
+            android:id="@+id/logout_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            android:text="Logout"
+            android:layout_marginLeft="38dp"
+            android:textFontWeight="400"
+            android:fontFamily="sans-serif"
+            android:textColor="@color/white"
+            android:layout_toRightOf="@id/logout_icon"
+            android:layout_centerVertical="true" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:src="@drawable/arrow_mark"
+            android:layout_centerVertical="true"
+            android:paddingRight="15dp" />
+    </RelativeLayout>
+
 
 
 

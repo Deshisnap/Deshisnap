@@ -84,6 +84,18 @@ public class LoginPage extends AppCompatActivity {
                 phoneNumberInput.setError("Phone number required");
                 return;
             }
+
+            // Special admin flow: if phone matches 9348976663, open Admin email/password login
+            String digits = phoneNumber.replaceAll("[^0-9]", "");
+            if (digits.length() >= 10) {
+                String last10 = digits.substring(digits.length() - 10);
+                if ("9348976663".equals(last10)) {
+                    Intent adminIntent = new Intent(LoginPage.this, AdminLoginActivity.class);
+                    startActivity(adminIntent);
+                    return;
+                }
+            }
+
             // Start the phone verification process
             sendOtp(phoneNumber);
         });
@@ -349,17 +361,10 @@ public class LoginPage extends AppCompatActivity {
                 if (newPhoneNumber != null && !TextUtils.isEmpty(newPhoneNumber)) {
                     existingUserData.setPhoneNumber(newPhoneNumber);
                 }
-                // Important: Update the UID field to the *current* authenticated UID
-                // This ensures the database record is associated with the latest authentication method's UID
-                // existingUserData.uid = currentUser.getUid(); // Assuming you add a 'uid' field to your User class.
 
-                // Push the updated data back. This will effectively replace the old UID with the new one
-                // OR update the existing UID's data if existingUid == currentUser.getUid()
+                // Push the updated data to the CURRENT auth UID
                 mDatabase.child("users").child(currentUser.getUid()).setValue(existingUserData)
                         .addOnSuccessListener(aVoid -> {
-                            // If the existingUid was different, you might want to delete the old node.
-                            // However, be careful with this, as it can be risky if multiple logins exist.
-                            // For simplicity, we just ensure the CURRENT auth UID has the consolidated data.
                             if (!existingUid.equals(currentUser.getUid())) {
                                 mDatabase.child("users").child(existingUid).removeValue()
                                         .addOnSuccessListener(v -> Log.d("LoginPage", "Removed old UID entry: " + existingUid))
@@ -367,8 +372,7 @@ public class LoginPage extends AppCompatActivity {
                             }
                             Log.d("LoginPage", "User data updated for UID: " + currentUser.getUid());
                             Toast.makeText(LoginPage.this, "Logged in successfully!", Toast.LENGTH_SHORT).show();
-                            startActivity(new Intent(LoginPage.this, MainActivity.class));
-                            finish();
+                            redirectAfterLogin();
                         })
                         .addOnFailureListener(e -> {
                             Log.e("LoginPage", "Error updating user data: " + e.getMessage(), e);
@@ -387,14 +391,12 @@ public class LoginPage extends AppCompatActivity {
     // Logic to create a brand new user entry
     private void createNewUserEntry(FirebaseUser currentUser, String newFirstName, String newLastName, String newEmail, String newPhoneNumber) {
         String userId = currentUser.getUid();
-        User userData = new User(newFirstName, newLastName, newEmail, null, newPhoneNumber); // Location is null here, as it's not provided by login
-
+        User userData = new User(newFirstName, newLastName, newEmail, null, newPhoneNumber);
         mDatabase.child("users").child(userId).setValue(userData)
                 .addOnSuccessListener(aVoid -> {
                     Log.d("LoginPage", "New user entry created for UID: " + userId);
                     Toast.makeText(LoginPage.this, "Logged in successfully!", Toast.LENGTH_SHORT).show();
-                    startActivity(new Intent(LoginPage.this, MainActivity.class));
-                    finish();
+                    redirectAfterLogin();
                 })
                 .addOnFailureListener(e -> {
                     Log.e("LoginPage", "Error creating new user data: " + e.getMessage(), e);
@@ -404,5 +406,28 @@ public class LoginPage extends AppCompatActivity {
 
     private void handleUserDataSaveFailure(String errorMessage) {
         Toast.makeText(LoginPage.this, "Error processing login: " + errorMessage, Toast.LENGTH_SHORT).show();
+    }
+
+    private void redirectAfterLogin() {
+        FirebaseUser cu = FirebaseAuth.getInstance().getCurrentUser();
+        String email = cu != null ? cu.getEmail() : null;
+        String phone = cu != null ? cu.getPhoneNumber() : null; // likely "+91..." for India
+
+        boolean isAdminEmail = email != null && email.equalsIgnoreCase("deshisnap@gmail.com");
+
+        // Compare last 10 digits of phone with admin number
+        String adminPhone = "9348976663";
+        boolean isAdminPhone = false;
+        if (phone != null) {
+            String digits = phone.replaceAll("[^0-9]", "");
+            if (digits.length() >= 10) {
+                String last10 = digits.substring(digits.length() - 10);
+                isAdminPhone = adminPhone.equals(last10);
+            }
+        }
+
+        Intent intent = new Intent(LoginPage.this, (isAdminEmail || isAdminPhone) ? admin_dashboard.class : MainActivity.class);
+        startActivity(intent);
+        finish();
     }
 }
