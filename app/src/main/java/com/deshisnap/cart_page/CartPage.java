@@ -49,6 +49,7 @@ public class CartPage extends AppCompatActivity implements CartAdapter.OnItemDel
     private List<Offer> offersList;
 
     private TextView finalGrandTotalTextView;
+    private TextView totalAdvanceTextView;
     private TextView noOffersTextView;
 
     private double cartTotalPrice = 0.0;
@@ -109,8 +110,9 @@ public class CartPage extends AppCompatActivity implements CartAdapter.OnItemDel
 
         noOffersTextView = findViewById(R.id.no_offers_text);
 
-        // Initialize the single TextView for final total
+        // Initialize total and advance TextViews
         finalGrandTotalTextView = findViewById(R.id.final_grand_total_text_view);
+        totalAdvanceTextView = findViewById(R.id.total_advance_text_view);
 
         // --- MODIFIED: Setup click listener for "Proceed to Pay" button ---
         findViewById(R.id.proceed_to_pay_button).setOnClickListener(v -> {
@@ -124,8 +126,13 @@ public class CartPage extends AppCompatActivity implements CartAdapter.OnItemDel
                     serviceNames.add(item.getServiceName());
                 }
 
+                // Compute total advance from items
+                double advanceSum = 0.0;
+                for (SimpleCartItem i : cartList) advanceSum += Math.max(0.0, i.getAdvanceAmount());
+
                 Intent intent = new Intent(CartPage.this, BookingConfirmationActivity.class);
                 intent.putExtra("GRAND_TOTAL", finalAmount);
+                intent.putExtra("TOTAL_ADVANCE", advanceSum);
                 intent.putStringArrayListExtra("SERVICE_NAMES", serviceNames);
                 startActivity(intent);
                 // Optionally finish this activity if you don't want to come back to cart
@@ -154,9 +161,6 @@ public class CartPage extends AppCompatActivity implements CartAdapter.OnItemDel
             startActivity(new Intent(CartPage.this, UserNotificationPage.class));
             finish();
         });
-
-
-
     }
 
     private void loadCartItems() {
@@ -165,22 +169,34 @@ public class CartPage extends AppCompatActivity implements CartAdapter.OnItemDel
             public void onDataChange(DataSnapshot dataSnapshot) {
                 cartList.clear();
                 cartTotalPrice = 0.0;
+                double advanceSum = 0.0;
                 for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     SimpleCartItem item = snapshot.getValue(SimpleCartItem.class);
                     if (item != null) {
                         item.setCartItemId(snapshot.getKey());
                         cartList.add(item);
-                        try {
-                            String priceStr = item.getServicePrice().replaceAll("[^\\d.]", "");
-                            cartTotalPrice += Double.parseDouble(priceStr);
-                        } catch (NumberFormatException e) {
-                            Log.e(TAG, "Error parsing price for " + item.getServiceName() + ": " + item.getServicePrice(), e);
-                            Toast.makeText(CartPage.this, "Error parsing price for " + item.getServiceName(), Toast.LENGTH_SHORT).show();
+                        // Prefer computed grandTotal when available; else parse servicePrice
+                        double itemTotal;
+                        if (item.getGrandTotal() > 0) {
+                            itemTotal = item.getGrandTotal();
+                        } else {
+                            try {
+                                String priceStr = item.getServicePrice() == null ? "0" : item.getServicePrice().replaceAll("[^\\d.]", "");
+                                itemTotal = Double.parseDouble(priceStr);
+                            } catch (NumberFormatException e) {
+                                itemTotal = 0.0;
+                                Log.e(TAG, "Error parsing price for " + item.getServiceName() + ": " + item.getServicePrice(), e);
+                            }
+                        }
+                        cartTotalPrice += itemTotal;
+                        // Sum advances
+                        if (item.getAdvanceAmount() > 0) {
+                            advanceSum += item.getAdvanceAmount();
                         }
                     }
                 }
                 cartAdapter.notifyDataSetChanged();
-                updatePaymentSummary();
+                updatePaymentSummary(advanceSum);
 
                 if (cartList.isEmpty()) {
                     // Handle empty cart state if needed
@@ -225,13 +241,16 @@ public class CartPage extends AppCompatActivity implements CartAdapter.OnItemDel
         });
     }
 
-    private void updatePaymentSummary() {
+    private void updatePaymentSummary(double advanceSum) {
         applyOfferDiscount(appliedOffer);
 
         double finalPrice = cartTotalPrice - currentDiscount;
 
         if (finalGrandTotalTextView != null) {
             finalGrandTotalTextView.setText(String.format(Locale.getDefault(), "Rs. %.2f", finalPrice));
+        }
+        if (totalAdvanceTextView != null) {
+            totalAdvanceTextView.setText(String.format(Locale.getDefault(), "Rs. %.2f", advanceSum));
         }
     }
 
@@ -257,7 +276,11 @@ public class CartPage extends AppCompatActivity implements CartAdapter.OnItemDel
     @Override
     public void onOfferApply(Offer offer) {
         appliedOffer = offer;
-        updatePaymentSummary();
+        // Recompute totals by triggering listener implicitly or do quick refresh here
+        // We'll just call updatePaymentSummary with current summed advances from list
+        double advanceSum = 0.0;
+        for (SimpleCartItem i : cartList) advanceSum += Math.max(0.0, i.getAdvanceAmount());
+        updatePaymentSummary(advanceSum);
         Toast.makeText(this, "Applied offer: " + offer.getDescription(), Toast.LENGTH_SHORT).show();
     }
 

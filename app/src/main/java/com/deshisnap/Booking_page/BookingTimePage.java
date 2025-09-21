@@ -32,6 +32,16 @@ public class BookingTimePage extends AppCompatActivity {
     private TextView currentSelectedTimeSlot = null;
     private int selectedYear, selectedMonth, selectedDayOfMonth;
     private String selectedTimeSlot = "";
+    
+    // Pricing type handling
+    private String pricingType = ""; // values: per_sqft (implicit), flat, custom_quote
+    private String displayPrice = "";
+
+    // New fields for square foot calculation
+    private double squareFeet = 0.0;
+    private double pricePerSqFt = 0.0;
+    private double grandTotal = 0.0;
+    private double advanceAmount = 0.0;
 
     private TextView[] weekdays = new TextView[7];
     private TextView[] dates = new TextView[7];
@@ -56,12 +66,24 @@ public class BookingTimePage extends AppCompatActivity {
         Intent intent = getIntent();
         if (intent != null && intent.hasExtra("SERVICE_OBJECT")) {
             bookedService = (Service) intent.getSerializableExtra("SERVICE_OBJECT");
+            
+            // Get square foot calculation data
+            squareFeet = intent.getDoubleExtra("SQUARE_FEET", 0.0);
+            pricePerSqFt = intent.getDoubleExtra("PRICE_PER_SQFT", 0.0);
+            grandTotal = intent.getDoubleExtra("GRAND_TOTAL", 0.0);
+            advanceAmount = intent.getDoubleExtra("ADVANCE_AMOUNT", 0.0);
+            pricingType = intent.getStringExtra("PRICING_TYPE") != null ? intent.getStringExtra("PRICING_TYPE") : "";
+            displayPrice = intent.getStringExtra("DISPLAY_PRICE") != null ? intent.getStringExtra("DISPLAY_PRICE") : "";
+            
             TextView headingText = findViewById(R.id.heading_text);
             if (bookedService != null) {
                 headingText.setText(bookedService.getName() + " Booking");
             } else {
                 headingText.setText("Service Booking");
             }
+            
+            // Update the advance amount display
+            updateAdvanceAmountDisplay();
         } else {
             Toast.makeText(this, "Error: Service details not received.", Toast.LENGTH_SHORT).show();
             finish();
@@ -100,6 +122,15 @@ public class BookingTimePage extends AppCompatActivity {
             summaryIntent.putExtra("SELECTED_MONTH", selectedMonth);
             summaryIntent.putExtra("SELECTED_DAY", selectedDayOfMonth);
             summaryIntent.putExtra("SELECTED_TIME_SLOT", selectedTimeSlot);
+            
+            // Pass square foot calculation data
+            summaryIntent.putExtra("SQUARE_FEET", squareFeet);
+            summaryIntent.putExtra("PRICE_PER_SQFT", pricePerSqFt);
+            summaryIntent.putExtra("GRAND_TOTAL", grandTotal);
+            summaryIntent.putExtra("ADVANCE_AMOUNT", advanceAmount);
+            // Pass pricing meta
+            summaryIntent.putExtra("PRICING_TYPE", pricingType);
+            summaryIntent.putExtra("DISPLAY_PRICE", displayPrice);
 
             startActivity(summaryIntent);
         });
@@ -277,6 +308,26 @@ public class BookingTimePage extends AppCompatActivity {
             } else {
                 Log.e(TAG, "ERROR: Cannot set click listener for a null time slot.");
             }
+        }
+    }
+
+    private void updateAdvanceAmountDisplay() {
+        TextView grandTotalToPayText = findViewById(R.id.grand_total_to_pay_text);
+        if (grandTotalToPayText == null) return;
+
+        if ("custom_quote".equals(pricingType)) {
+            // Fixed minimum advance for custom quotes
+            grandTotalToPayText.setText("You have to pay this: ₹" + String.format("%.2f", advanceAmount) + " (Booking advance)");
+        } else if (advanceAmount > 0 && grandTotal > 0) {
+            // Per-sqft or flat total with known grandTotal
+            grandTotalToPayText.setText("You have to pay this: ₹" + String.format("%.2f", advanceAmount) +
+                    " (10% advance of ₹" + String.format("%.2f", grandTotal) + ")");
+        } else if (advanceAmount > 0) {
+            // Fallback – show just the advance
+            grandTotalToPayText.setText("You have to pay this: ₹" + String.format("%.2f", advanceAmount));
+        } else {
+            // Nothing to show
+            grandTotalToPayText.setText("You have to pay this: ₹0.00");
         }
     }
 }

@@ -50,6 +50,12 @@ public class BookingSummaryActivity extends AppCompatActivity {
     private int year, month, day; // Correct variables for year, month, day
     private String timeSlot;
     private Uri selectedImageUri; // URI of the selected screenshot
+    
+    // New fields for square foot calculation
+    private double squareFeet = 0.0;
+    private double pricePerSqFt = 0.0;
+    private double grandTotal = 0.0;
+    private double advanceAmount = 0.0;
 
     // Firebase instances
     private FirebaseAuth mAuth;
@@ -114,9 +120,17 @@ public class BookingSummaryActivity extends AppCompatActivity {
             month = intent.getIntExtra("SELECTED_MONTH", -1);
             day = intent.getIntExtra("SELECTED_DAY", -1);
             timeSlot = intent.getStringExtra("SELECTED_TIME_SLOT");
+            
+            // Get square foot calculation data
+            squareFeet = intent.getDoubleExtra("SQUARE_FEET", 0.0);
+            pricePerSqFt = intent.getDoubleExtra("PRICE_PER_SQFT", 0.0);
+            grandTotal = intent.getDoubleExtra("GRAND_TOTAL", 0.0);
+            advanceAmount = intent.getDoubleExtra("ADVANCE_AMOUNT", 0.0);
+            String pricingType = intent.getStringExtra("PRICING_TYPE") != null ? intent.getStringExtra("PRICING_TYPE") : "";
+            String displayPrice = intent.getStringExtra("DISPLAY_PRICE") != null ? intent.getStringExtra("DISPLAY_PRICE") : "";
 
             if (bookedService != null && year != -1 && month != -1 && day != -1 && timeSlot != null) {
-                populateSummaryDetails();
+                populateSummaryDetails(pricingType, displayPrice);
             } else {
                 Toast.makeText(this, "Booking details incomplete. Please try again.", Toast.LENGTH_LONG).show();
                 finish(); // Go back if data is missing
@@ -154,7 +168,7 @@ public class BookingSummaryActivity extends AppCompatActivity {
         });
     }
 
-    private void populateSummaryDetails() {
+    private void populateSummaryDetails(String pricingType, String displayPrice) {
         summaryTitle.setText(bookedService.getName());
 
         Calendar selectedCalendar = Calendar.getInstance();
@@ -164,7 +178,24 @@ public class BookingSummaryActivity extends AppCompatActivity {
         summaryDate.setText(dateFormat.format(selectedCalendar.getTime()));
 
         summaryTime.setText(timeSlot);
-        summaryPrice.setText(bookedService.getPrice());
+
+        // Update price to show detailed calculation based on pricingType
+        if ("per_sqft".equals(pricingType) && grandTotal > 0) {
+            String priceDetails = String.format("%.1f sq ft × ₹%.0f = ₹%.2f\nAdvance (10%%): ₹%.2f",
+                    squareFeet, pricePerSqFt, grandTotal, advanceAmount);
+            summaryPrice.setText(priceDetails);
+        } else if ("flat".equals(pricingType) && grandTotal > 0) {
+            String priceDetails = String.format("Flat Price: %s\nAdvance (10%%): ₹%.2f",
+                    bookedService.getPrice(), advanceAmount);
+            summaryPrice.setText(priceDetails);
+        } else if ("custom_quote".equals(pricingType)) {
+            String priceDetails = String.format("Price: %s\nBooking Advance: ₹%.2f",
+                    displayPrice.isEmpty() ? bookedService.getPrice() : displayPrice, advanceAmount);
+            summaryPrice.setText(priceDetails);
+        } else {
+            // Fallback to original price string
+            summaryPrice.setText(bookedService.getPrice());
+        }
     }
 
     private void checkPermissionAndPickImage() {
@@ -261,6 +292,21 @@ public class BookingSummaryActivity extends AppCompatActivity {
         // *** FIX ENDS HERE ***
         bookingData.put("timeSlot", timeSlot);
         bookingData.put("price", bookedService.getPrice());
+        
+        // Always store advance amount
+        bookingData.put("advanceAmount", advanceAmount);
+        // Add square foot calculation data when applicable
+        if (grandTotal > 0) {
+            bookingData.put("squareFeet", squareFeet);
+            bookingData.put("pricePerSqFt", pricePerSqFt);
+            bookingData.put("grandTotal", grandTotal);
+            bookingData.put("calculatedPrice", String.format("%.1f sq ft × ₹%.0f = ₹%.2f", 
+                    squareFeet, pricePerSqFt, grandTotal));
+        }
+        // Save pricing meta
+        bookingData.put("pricingType", getIntent().getStringExtra("PRICING_TYPE"));
+        bookingData.put("displayPrice", getIntent().getStringExtra("DISPLAY_PRICE"));
+        
         bookingData.put("screenshotUrl", screenshotUrl);
         bookingData.put("timestamp", System.currentTimeMillis()); // For ordering/tracking
 

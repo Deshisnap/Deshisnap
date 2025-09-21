@@ -159,17 +159,37 @@
             android:spinnerMode="dropdown"
             android:theme="@style/SpinnerStyle" android:layout_marginBottom="32dp"/>
 
+        <TextView
+            android:id="@+id/selected_slot_text_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/time_slot_spinner"
+            android:text="Selected Slot: "
+            android:textSize="16sp"
+            android:textColor="@color/white"
+            android:layout_marginBottom="16dp"/>
+
         <Button
             android:id="@+id/submit_booking_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/time_slot_spinner"
+            android:layout_below="@id/selected_slot_text_view"
             android:text="Submit Booking"
             android:backgroundTint="@color/nav_item_active"
             android:textColor="@color/white"
             android:textSize="18sp"
             android:padding="16dp"
             android:layout_marginBottom="16dp"/>
+
+        <ProgressBar
+            android:id="@+id/upload_progress_bar"
+            style="@android:style/Widget.DeviceDefault.Light.ProgressBar.Large"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@id/submit_booking_button"
+            android:layout_marginTop="12dp"
+            android:visibility="gone"/>
 
     </RelativeLayout>
 </ScrollView>

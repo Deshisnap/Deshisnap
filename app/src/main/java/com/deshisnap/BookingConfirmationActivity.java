@@ -50,8 +50,13 @@ public class BookingConfirmationActivity extends AppCompatActivity {
     private EditText dateEditText;
     private Spinner timeSlotSpinner;
     private Button submitBookingButton;
+    private boolean hasScreenshot = false;
+    private String selectedSlotInternal = null;
+    private TextView selectedSlotTextView;
+    private View uploadProgressBar;
 
     private double grandTotal;
+    private double totalAdvance; // sum of advances from cart
     private ArrayList<String> serviceNames;
     private Uri paymentScreenshotUri; // URI of the selected image
     private String uploadedScreenshotUrl = null; // URL after uploading to Firebase Storage
@@ -85,13 +90,17 @@ public class BookingConfirmationActivity extends AppCompatActivity {
         dateEditText = findViewById(R.id.date_edit_text);
         timeSlotSpinner = findViewById(R.id.time_slot_spinner);
         submitBookingButton = findViewById(R.id.submit_booking_button);
+        submitBookingButton.setEnabled(false); // disabled until all inputs ready
+        selectedSlotTextView = findViewById(R.id.selected_slot_text_view);
+        uploadProgressBar = findViewById(R.id.upload_progress_bar);
 
         // Get data from Intent
         grandTotal = getIntent().getDoubleExtra("GRAND_TOTAL", 0.0);
+        totalAdvance = getIntent().getDoubleExtra("TOTAL_ADVANCE", 0.0);
         serviceNames = getIntent().getStringArrayListExtra("SERVICE_NAMES");
 
-        // Set text for Grand Total and Service Names
-        grandTotalTextView.setText(String.format(Locale.getDefault(), "Grand Total: Rs. %.2f", grandTotal));
+        // Show Advance to Pay Now (instead of grand total)
+        grandTotalTextView.setText(String.format(Locale.getDefault(), "You have to pay now: Rs. %.2f", totalAdvance));
         if (serviceNames != null && !serviceNames.isEmpty()) {
             serviceNamesTextView.setText("Services: " + String.join(", ", serviceNames));
         } else {
@@ -108,6 +117,28 @@ public class BookingConfirmationActivity extends AppCompatActivity {
                 R.array.time_slots, android.R.layout.simple_spinner_item);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         timeSlotSpinner.setAdapter(adapter);
+        timeSlotSpinner.setPrompt("Select Time Slot");
+        timeSlotSpinner.setSelection(0, false);
+        timeSlotSpinner.setOnItemSelectedListener(new android.widget.AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(android.widget.AdapterView<?> parent, View view, int position, long id) {
+                String val = parent.getItemAtPosition(position).toString();
+                selectedSlotInternal = val;
+                if (selectedSlotTextView != null) {
+                    selectedSlotTextView.setText("Selected Slot: " + val);
+                }
+                updateSubmitEnabled();
+            }
+
+            @Override
+            public void onNothingSelected(android.widget.AdapterView<?> parent) {
+                selectedSlotInternal = null;
+                if (selectedSlotTextView != null) {
+                    selectedSlotTextView.setText("Selected Slot: ");
+                }
+                updateSubmitEnabled();
+            }
+        });
 
         // --- QR Code Display ---
         qrCodeImageView.setImageResource(R.drawable.payment_qr_code);
@@ -120,6 +151,8 @@ public class BookingConfirmationActivity extends AppCompatActivity {
                 paymentScreenshotUri = uri;
                 screenshotPreviewImageView.setImageURI(paymentScreenshotUri);
                 screenshotPreviewImageView.setVisibility(View.VISIBLE);
+                hasScreenshot = true;
+                updateSubmitEnabled();
                 Toast.makeText(this, "Image selected. Click Submit Booking to upload.", Toast.LENGTH_LONG).show();
             } else {
                 Toast.makeText(this, "No image selected.", Toast.LENGTH_SHORT).show();
@@ -142,6 +175,7 @@ public class BookingConfirmationActivity extends AppCompatActivity {
                 (view, year, month, dayOfMonth) -> {
                     calendar.set(year, month, dayOfMonth);
                     dateEditText.setText(dateFormatter.format(calendar.getTime()));
+                    updateSubmitEnabled();
                 },
                 calendar.get(Calendar.YEAR),
                 calendar.get(Calendar.MONTH),
@@ -187,10 +221,14 @@ public class BookingConfirmationActivity extends AppCompatActivity {
         }
 
         String selectedDate = dateEditText.getText().toString().trim();
-        String selectedTimeSlot = timeSlotSpinner.getSelectedItem().toString();
+        String selectedTimeSlot = (selectedSlotInternal == null) ? "" : selectedSlotInternal;
 
-        if (selectedDate.isEmpty() || selectedTimeSlot.isEmpty() || selectedTimeSlot.equals("Select Time Slot")) {
-            Toast.makeText(this, "Please select a date and time slot.", Toast.LENGTH_SHORT).show();
+        if (selectedDate.isEmpty()) {
+            Toast.makeText(this, "Please select a date.", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        if (selectedTimeSlot.isEmpty() || selectedTimeSlot.equals("Select Time Slot")) {
+            Toast.makeText(this, "Please select a time slot.", Toast.LENGTH_SHORT).show();
             return;
         }
 
@@ -201,7 +239,17 @@ public class BookingConfirmationActivity extends AppCompatActivity {
         }
 
         // If screenshot is selected, proceed with upload
+        setLoading(true);
         uploadScreenshot(currentUser.getUid(), selectedDate, selectedTimeSlot);
+    }
+
+    private void updateSubmitEnabled() {
+        boolean hasDate = dateEditText.getText() != null && !dateEditText.getText().toString().trim().isEmpty();
+        boolean hasSlot = selectedSlotInternal != null && !"Select Time Slot".equals(selectedSlotInternal);
+        boolean enable = hasDate && hasSlot && hasScreenshot;
+        if (submitBookingButton != null) {
+            submitBookingButton.setEnabled(enable);
+        }
     }
 
     private void uploadScreenshot(String userId, String date, String timeSlot) {
@@ -215,18 +263,15 @@ public class BookingConfirmationActivity extends AppCompatActivity {
                     uploadedScreenshotUrl = uri.toString();
                     Toast.makeText(BookingConfirmationActivity.this, "Screenshot uploaded successfully!", Toast.LENGTH_SHORT).show();
                     saveBookingToDatabase(userId, date, timeSlot, uploadedScreenshotUrl);
+                }).addOnFailureListener(e -> {
+                    Toast.makeText(BookingConfirmationActivity.this, "Failed to get uploaded file URL: " + e.getMessage(), Toast.LENGTH_LONG).show();
+                    Log.e(TAG, "Failed to get download URL", e);
+                    setLoading(false);
                 }))
                 .addOnFailureListener(e -> {
                     Toast.makeText(BookingConfirmationActivity.this, "Screenshot upload failed: " + e.getMessage(), Toast.LENGTH_LONG).show();
                     Log.e(TAG, "Screenshot upload failed", e);
-                    // Critical: If screenshot upload fails and it's mandatory,
-                    // you might want to prevent booking or offer a retry.
-                    // For now, we'll stop if it's mandatory and failed.
-                    // Or you could allow retry, or alert user to contact support.
-                    // If you wanted to *allow* booking without screenshot on failure,
-                    // you would call saveBookingToDatabase(userId, date, timeSlot, null); here.
-                    // But based on your requirement, we should not proceed without it.
-                    // So, simply return here and don't save the booking.
+                    setLoading(false);
                 });
     }
 
@@ -249,19 +294,56 @@ public class BookingConfirmationActivity extends AppCompatActivity {
                 "Pending" // Initial status of the booking
         );
 
+        // Compute advance using passed TOTAL_ADVANCE (fallback to 10% if not provided)
+        double advancePaid = totalAdvance > 0 ? totalAdvance : Math.max(0.0, grandTotal * 0.10);
+        double remainingPayment = Math.max(0.0, grandTotal - advancePaid);
+        newBooking.setAdvancePaid(advancePaid);
+        newBooking.setRemainingPayment(remainingPayment);
+
+        // Save globally under /bookings
         bookingsRef.child(bookingId).setValue(newBooking)
                 .addOnSuccessListener(aVoid -> {
-                    Toast.makeText(BookingConfirmationActivity.this, "Booking submitted successfully!", Toast.LENGTH_LONG).show();
-                    clearUserCart(userId);
-                    // Navigate to a success page
-                    Intent successIntent = new Intent(BookingConfirmationActivity.this, MainActivity.class);
-                    startActivity(successIntent);
-                    finish();
+                    // Also save under user's bookings
+                    DatabaseReference userBookingRef = FirebaseDatabase.getInstance()
+                            .getReference("users").child(userId).child("bookings").child(bookingId);
+                    userBookingRef.setValue(newBooking)
+                            .addOnSuccessListener(v2 -> {
+                                Toast.makeText(BookingConfirmationActivity.this, "Booking submitted successfully!", Toast.LENGTH_LONG).show();
+                                clearUserCart(userId);
+                                // Navigate to a success page
+                                Intent successIntent = new Intent(BookingConfirmationActivity.this, MainActivity.class);
+                                startActivity(successIntent);
+                                finish();
+                            })
+                            .addOnFailureListener(e2 -> {
+                                Toast.makeText(BookingConfirmationActivity.this, "Saved globally but failed under user: " + e2.getMessage(), Toast.LENGTH_LONG).show();
+                                Log.e(TAG, "Failed to save user booking", e2);
+                                setLoading(false);
+                            });
                 })
                 .addOnFailureListener(e -> {
                     Toast.makeText(BookingConfirmationActivity.this, "Failed to submit booking: " + e.getMessage(), Toast.LENGTH_LONG).show();
                     Log.e(TAG, "Failed to save booking", e);
+                    setLoading(false);
                 });
+    }
+
+    private void setLoading(boolean loading) {
+        if (uploadProgressBar != null) {
+            uploadProgressBar.setVisibility(loading ? View.VISIBLE : View.GONE);
+        }
+        if (submitBookingButton != null) {
+            submitBookingButton.setEnabled(!loading);
+        }
+        if (uploadScreenshotButton != null) {
+            uploadScreenshotButton.setEnabled(!loading);
+        }
+        if (dateEditText != null) {
+            dateEditText.setEnabled(!loading);
+        }
+        if (timeSlotSpinner != null) {
+            timeSlotSpinner.setEnabled(!loading);
+        }
     }
 
     private void clearUserCart(String userId) {

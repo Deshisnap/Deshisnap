@@ -7,6 +7,8 @@ public class Booking {
     private String userId;
     private List<String> serviceNames;
     private double grandTotal;
+    private double advancePaid; // amount paid in advance
+    private double remainingPayment; // grandTotal - advancePaid
     private String bookingDate;
     private String timeSlot;
     private String paymentScreenshotUrl;
@@ -23,6 +25,8 @@ public class Booking {
         this.userId = userId;
         this.serviceNames = serviceNames;
         this.grandTotal = grandTotal;
+        this.advancePaid = 0.0;
+        this.remainingPayment = 0.0;
         this.bookingDate = bookingDate;
         this.timeSlot = timeSlot;
         this.paymentScreenshotUrl = paymentScreenshotUrl;
@@ -61,6 +65,22 @@ public class Booking {
 
     public void setGrandTotal(double grandTotal) {
         this.grandTotal = grandTotal;
+    }
+
+    public double getAdvancePaid() {
+        return advancePaid;
+    }
+
+    public void setAdvancePaid(double advancePaid) {
+        this.advancePaid = advancePaid;
+    }
+
+    public double getRemainingPayment() {
+        return remainingPayment;
+    }
+
+    public void setRemainingPayment(double remainingPayment) {
+        this.remainingPayment = remainingPayment;
     }
 
     public String getBookingDate() {

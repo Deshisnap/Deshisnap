@@ -26,7 +26,7 @@
             android:text="Address"
             android:textColor="@color/white"
             android:textFontWeight="700"
-            android:textSize="16sp" /> <!-- use sp for textSize -->
+            android:textSize="16sp" />
 
         <ImageView
             android:id="@+id/cart_img"
@@ -49,9 +49,6 @@
         android:layout_below="@+id/header"
         />
 
-
-
-
     <RelativeLayout
         android:id="@+id/heading_title_container"
         android:layout_width="wrap_content"
@@ -70,7 +67,6 @@
             android:layout_centerVertical="true"
             android:layout_marginLeft="20dp"
             >
-
         </TextView>
 
         <RelativeLayout
@@ -91,18 +87,10 @@
                 android:textSize="14sp"
                 android:textStyle="bold"
                 android:layout_margin="10dp"
-
                 >
             </TextView>
-
         </RelativeLayout>
-
-
     </RelativeLayout>
-
-
-
-
 
     <ScrollView
         android:layout_width="match_parent"
@@ -128,7 +116,6 @@
                     android:weightSum="7"
                     android:padding="8dp">
 
-                    <!-- SLOT 1 -->
                     <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:gravity="center" android:padding="4dp">
                         <RelativeLayout android:id="@+id/date_slot_container_1" android:layout_width="match_parent" android:layout_height="wrap_content" android:background="@drawable/time_slot_bg" android:padding="8dp" android:clickable="true" android:focusable="true">
                             <TextView android:id="@+id/weekday1" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="SAT" android:textColor="@color/white" android:textSize="14sp" android:layout_centerHorizontal="true"/>
@@ -138,7 +125,6 @@
                         </RelativeLayout>
                     </LinearLayout>
 
-                    <!-- SLOT 2 -->
                     <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:gravity="center" android:padding="4dp">
                         <RelativeLayout android:id="@+id/date_slot_container_2" android:layout_width="match_parent" android:layout_height="wrap_content" android:background="@drawable/time_slot_bg" android:padding="8dp" android:clickable="true" android:focusable="true">
                             <TextView android:id="@+id/weekday2" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="SUN" android:textColor="@color/white" android:textSize="14sp" android:layout_centerHorizontal="true"/>
@@ -148,7 +134,6 @@
                         </RelativeLayout>
                     </LinearLayout>
 
-                    <!-- SLOT 3 -->
                     <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:gravity="center" android:padding="4dp">
                         <RelativeLayout android:id="@+id/date_slot_container_3" android:layout_width="match_parent" android:layout_height="wrap_content" android:background="@drawable/time_slot_bg" android:padding="8dp" android:clickable="true" android:focusable="true">
                             <TextView android:id="@+id/weekday3" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="MON" android:textColor="@color/white" android:textSize="14sp" android:layout_centerHorizontal="true"/>
@@ -158,7 +143,6 @@
                         </RelativeLayout>
                     </LinearLayout>
 
-                    <!-- SLOT 4 -->
                     <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:gravity="center" android:padding="4dp">
                         <RelativeLayout android:id="@+id/date_slot_container_4" android:layout_width="match_parent" android:layout_height="wrap_content" android:background="@drawable/time_slot_bg" android:padding="8dp" android:clickable="true" android:focusable="true">
                             <TextView android:id="@+id/weekday4" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="TUE" android:textColor="@color/white" android:textSize="14sp" android:layout_centerHorizontal="true"/>
@@ -168,7 +152,6 @@
                         </RelativeLayout>
                     </LinearLayout>
 
-                    <!-- SLOT 5 -->
                     <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:gravity="center" android:padding="4dp">
                         <RelativeLayout android:id="@+id/date_slot_container_5" android:layout_width="match_parent" android:layout_height="wrap_content" android:background="@drawable/time_slot_bg" android:padding="8dp" android:clickable="true" android:focusable="true">
                             <TextView android:id="@+id/weekday5" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="WED" android:textColor="@color/white" android:textSize="14sp" android:layout_centerHorizontal="true"/>
@@ -178,7 +161,6 @@
                         </RelativeLayout>
                     </LinearLayout>
 
-                    <!-- SLOT 6 -->
                     <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:gravity="center" android:padding="4dp">
                         <RelativeLayout android:id="@+id/date_slot_container_6" android:layout_width="match_parent" android:layout_height="wrap_content" android:background="@drawable/time_slot_bg" android:padding="8dp" android:clickable="true" android:focusable="true">
                             <TextView android:id="@+id/weekday6" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="THU" android:textColor="@color/white" android:textSize="14sp" android:layout_centerHorizontal="true"/>
@@ -188,7 +170,6 @@
                         </RelativeLayout>
                     </LinearLayout>
 
-                    <!-- SLOT 7 -->
                     <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:layout_weight="1" android:gravity="center" android:padding="4dp">
                         <RelativeLayout android:id="@+id/date_slot_container_7" android:layout_width="match_parent" android:layout_height="wrap_content" android:background="@drawable/time_slot_bg" android:padding="8dp" android:clickable="true" android:focusable="true">
                             <TextView android:id="@+id/weekday7" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="FRI" android:textColor="@color/white" android:textSize="14sp" android:layout_centerHorizontal="true"/>
@@ -209,7 +190,6 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
                 android:layout_below="@+id/date_month_weekday_container"
-
                 />
 
             <TextView
@@ -244,7 +224,6 @@
                     android:gravity="center_horizontal"
                     android:background="@color/appHometheme">
 
-                    <!-- SLOT ROW 1: 7AM - 10AM -->
                     <LinearLayout
                         android:id="@+id/time_7am_10am_container"
                         android:layout_width="match_parent"
@@ -294,7 +273,6 @@
                             android:layout_marginHorizontal="4dp" />
                     </LinearLayout>
 
-                    <!-- SLOT ROW 2: 10AM - 1PM -->
                     <LinearLayout
                         android:id="@+id/time_10am_1pm_container"
                         android:layout_width="match_parent"
@@ -344,7 +322,6 @@
                             android:layout_marginHorizontal="4dp" />
                     </LinearLayout>
 
-                    <!-- SLOT ROW 3: 3PM - 6PM -->
                     <LinearLayout
                         android:id="@+id/time_3pm_6pm_container"
                         android:layout_width="match_parent"
@@ -393,8 +370,6 @@
                             android:layout_marginHorizontal="4dp" />
                     </LinearLayout>
                 </LinearLayout>
-
-
             </RelativeLayout>
 
             <View
@@ -408,6 +383,20 @@
                 />
 
             <TextView
+                android:id="@+id/grand_total_to_pay_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="You have to pay this: Rs. 0.00"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                android:textColor="@color/white"
+                android:layout_below="@id/strokebar3"
+                android:layout_marginTop="16dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="16dp"
+                />
+
+            <TextView
                 android:id="@+id/scan_qrcode_text"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -417,7 +406,7 @@
                 android:fontFamily="@string/font"
                 android:textColor="@color/white"
                 android:layout_marginLeft="20dp"
-                android:layout_below="@id/strokebar3"
+                android:layout_below="@id/grand_total_to_pay_text"
                 android:layout_centerHorizontal="true"
                 >
             </TextView>
@@ -429,18 +418,38 @@
                 android:src="@drawable/payment_qr_code"
                 android:layout_below="@id/scan_qrcode_text"
                 android:layout_centerHorizontal="true"
+                android:contentDescription="Payment QR Code"
                 >
 
             </ImageView>
+
+            <Button
+                android:id="@+id/upload_screenshot_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Upload Screenshot"
+                android:layout_below="@id/qr_code_img"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="16dp"/>
+
+            <ImageView
+                android:id="@+id/screenshot_preview_image"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_below="@id/upload_screenshot_button"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="16dp"
+                android:scaleType="centerInside"
+                android:visibility="gone"
+                />
 
             <RelativeLayout
                 android:id="@+id/next_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/qr_code_img"
+                android:layout_below="@id/screenshot_preview_image"
                 android:layout_centerHorizontal="true"
                 android:layout_marginTop="30dp"
-
                 >
                 <TextView
                     android:id="@+id/next"
@@ -461,13 +470,9 @@
                     android:focusable="true"
                     tools:ignore="TouchTargetSizeCheck"
                     >
-
                 </TextView>
             </RelativeLayout>
 
-
-
-            <!--         footer               -->
             <include layout="@layout/footer_page"
                 android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
@@ -478,44 +483,7 @@
 
             </include>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         </RelativeLayout>
-
     </ScrollView>
     <LinearLayout
         android:id="@+id/bottom_nav"
@@ -526,11 +494,12 @@
         android:elevation="8dp"
         android:orientation="horizontal"
         android:padding="1dp"
-        app:layout_constraintBottom_toBottomOf="parent">  <!-- ensures it sits above the ScrollView -->
+        app:layout_constraintBottom_toBottomOf="parent">
 
         <include layout="@layout/navbar"
+            android:layout_height="match_parent"
+            android:layout_width="match_parent"
             android:id="@+id/bottom_navigation" />
-
 
     </LinearLayout>
 

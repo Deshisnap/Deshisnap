@@ -3,12 +3,18 @@ package com.deshisnap.service_related_work;
 import android.content.Intent;
 import android.os.Bundle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.widget.Toolbar;
 import android.view.MenuItem;
+import android.view.LayoutInflater;
+import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.text.TextWatcher;
+import android.text.Editable;
 
 // Firebase Imports
 import com.deshisnap.Booking_page.BookingTimePage;
@@ -35,14 +41,14 @@ public class ServiceDetailActivity extends AppCompatActivity {
         FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
         cartDatabaseRef = firebaseDatabase.getReference("carts"); // Root node for all carts
         mAuth = FirebaseAuth.getInstance(); // <-- Initialize FirebaseAuth
-
+        
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayShowTitleEnabled(false);
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         }
-
+        
         ImageView serviceImage = findViewById(R.id.image_service);
         TextView toolbarTitle = findViewById(R.id.toolbar_title);
         TextView serviceTitle = findViewById(R.id.text_detail_service_title);
@@ -87,37 +93,27 @@ public class ServiceDetailActivity extends AppCompatActivity {
         // --- Set Button Click Listeners ---
         addToCartButton.setOnClickListener(v -> {
             if (currentService != null) {
-                // Check if a user is currently logged in
-                if (mAuth.getCurrentUser() != null) {
-                    String userId = mAuth.getCurrentUser().getUid(); // Get the current user's ID
-
-                    SimpleCartItem cartItem = new SimpleCartItem(
-                            currentService.getName(),
-                            currentService.getPrice()
-                    );
-
-                    // Get a unique key for the new cart item
-                    String cartItemId = cartDatabaseRef.child(userId).push().getKey();
-
-                    if (cartItemId != null) {
-                        // Save the cart item under the user's ID
-                        cartItem.setCartItemId(cartItemId); // <-- Set the cartItemId
-                        cartDatabaseRef.child(userId).child(cartItemId).setValue(cartItem)
-                                .addOnSuccessListener(aVoid -> {
-                                    Toast.makeText(ServiceDetailActivity.this, currentService.getName() + " added to cart!", Toast.LENGTH_SHORT).show();
-                                    // Optional: Update a cart count display
-                                })
-                                .addOnFailureListener(e -> {
-                                    Toast.makeText(ServiceDetailActivity.this, "Failed to add to cart: " + e.getMessage(), Toast.LENGTH_LONG).show();
-                                });
-                    } else {
-                        Toast.makeText(ServiceDetailActivity.this, "Error: Could not generate cart item ID.", Toast.LENGTH_SHORT).show();
-                    }
-                } else {
-                    // User is not logged in, prompt them to log in
+                if (mAuth.getCurrentUser() == null) {
                     Toast.makeText(ServiceDetailActivity.this, "Please log in to add items to cart.", Toast.LENGTH_LONG).show();
-                    // Optional: Redirect to login/signup activity
-                    // startActivity(new Intent(ServiceDetailActivity.this, LoginActivity.class));
+                    return;
+                }
+
+                String priceStr = currentService.getPrice() != null ? currentService.getPrice() : "";
+                if (isPerSqFtPrice(priceStr)) {
+                    // Ask for sq ft, then add to cart with computed totals
+                    showSquareFootDialogForCart();
+                } else if (isCustomQuote(priceStr)) {
+                    // Custom quote: fixed ₹500 advance
+                    addToCartWithValues("custom_quote", 0.0, 0.0, 0.0, 500.0);
+                } else {
+                    // Flat price: 10% advance
+                    double flatPrice = extractPriceFromString(priceStr);
+                    if (flatPrice <= 0) {
+                        Toast.makeText(ServiceDetailActivity.this, "Invalid price for this service.", Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+                    double advance = flatPrice * 0.10;
+                    addToCartWithValues("flat", 0.0, 0.0, flatPrice, advance);
                 }
             } else {
                 Toast.makeText(ServiceDetailActivity.this, "Cannot add to cart: Service details missing.", Toast.LENGTH_SHORT).show();
@@ -126,14 +122,251 @@ public class ServiceDetailActivity extends AppCompatActivity {
 
         bookNowButton.setOnClickListener(v -> {
             if (currentService != null) {
-                Toast.makeText(ServiceDetailActivity.this, "Booking " + currentService.getName() + "!", Toast.LENGTH_SHORT).show();
-                Intent bookingIntent = new Intent(ServiceDetailActivity.this, BookingTimePage.class);
-                bookingIntent.putExtra("SERVICE_OBJECT", currentService);
-                startActivity(bookingIntent);
+                String priceStr = currentService.getPrice() != null ? currentService.getPrice() : "";
+                if (isPerSqFtPrice(priceStr)) {
+                    // Show dialog to collect square feet for per sq ft pricing
+                    showSquareFootDialog();
+                } else {
+                    // Handle flat price or custom quote without sq ft dialog
+                    handleFlatOrCustomBooking(priceStr);
+                }
             } else {
                 Toast.makeText(ServiceDetailActivity.this, "Cannot book: Service details missing.", Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    // Variant: dialog that adds to cart instead of navigating
+    private void showSquareFootDialogForCart() {
+        LayoutInflater inflater = getLayoutInflater();
+        View dialogView = inflater.inflate(R.layout.dialog_square_foot_input, null);
+
+        EditText editSquareFoot = dialogView.findViewById(R.id.edit_square_foot);
+        TextView textPriceCalculation = dialogView.findViewById(R.id.text_price_calculation);
+        Button btnCancel = dialogView.findViewById(R.id.btn_cancel);
+        Button btnConfirm = dialogView.findViewById(R.id.btn_confirm);
+
+        double pricePerSqFt = extractPriceFromString(currentService.getPrice());
+        textPriceCalculation.setText("Price per sq ft: ₹" + (int)pricePerSqFt + "\nTotal: ₹0");
+
+        AlertDialog dialog = new AlertDialog.Builder(this)
+                .setView(dialogView)
+                .setCancelable(true)
+                .create();
+
+        editSquareFoot.addTextChangedListener(new TextWatcher() {
+            @Override public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+            @Override public void onTextChanged(CharSequence s, int start, int before, int count) {
+                try {
+                    double sqFt = s.toString().trim().isEmpty() ? 0.0 : Double.parseDouble(s.toString().trim());
+                    double total = sqFt * pricePerSqFt;
+                    textPriceCalculation.setText("Price per sq ft: ₹" + (int)pricePerSqFt + "\nTotal: ₹" + (int)total);
+                } catch (NumberFormatException e) {
+                    textPriceCalculation.setText("Price per sq ft: ₹" + (int)pricePerSqFt + "\nTotal: ₹0");
+                }
+            }
+            @Override public void afterTextChanged(Editable s) {}
+        });
+
+        btnCancel.setOnClickListener(v -> dialog.dismiss());
+        btnConfirm.setOnClickListener(v -> {
+            String sqFtText = editSquareFoot.getText().toString().trim();
+            if (sqFtText.isEmpty()) {
+                Toast.makeText(ServiceDetailActivity.this, "Please enter square footage", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            try {
+                double squareFeet = Double.parseDouble(sqFtText);
+                if (squareFeet <= 0) {
+                    Toast.makeText(ServiceDetailActivity.this, "Please enter a valid square footage", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                double grandTotal = squareFeet * pricePerSqFt;
+                double advance = grandTotal * 0.10;
+                addToCartWithValues("per_sqft", squareFeet, pricePerSqFt, grandTotal, advance);
+                dialog.dismiss();
+            } catch (NumberFormatException e) {
+                Toast.makeText(ServiceDetailActivity.this, "Please enter a valid number", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        dialog.show();
+    }
+
+    private void addToCartWithValues(String pricingType, double squareFeet, double pricePerSqFt, double grandTotal, double advanceAmount) {
+        if (mAuth.getCurrentUser() == null) {
+            Toast.makeText(this, "Please log in to add items to cart.", Toast.LENGTH_LONG).show();
+            return;
+        }
+        String userId = mAuth.getCurrentUser().getUid();
+
+        SimpleCartItem cartItem = new SimpleCartItem(currentService.getName(), currentService.getPrice());
+        cartItem.setPricingType(pricingType);
+        cartItem.setDisplayPrice(currentService.getPrice());
+        cartItem.setSquareFeet(squareFeet);
+        cartItem.setPricePerSqFt(pricePerSqFt);
+        cartItem.setGrandTotal(grandTotal);
+        cartItem.setAdvanceAmount(advanceAmount);
+
+        String cartItemId = cartDatabaseRef.child(userId).push().getKey();
+        if (cartItemId == null) {
+            Toast.makeText(this, "Error: Could not generate cart item ID.", Toast.LENGTH_SHORT).show();
+            return;
+        }
+        cartItem.setCartItemId(cartItemId);
+        cartDatabaseRef.child(userId).child(cartItemId).setValue(cartItem)
+                .addOnSuccessListener(aVoid -> Toast.makeText(ServiceDetailActivity.this, currentService.getName() + " added to cart!", Toast.LENGTH_SHORT).show())
+                .addOnFailureListener(e -> Toast.makeText(ServiceDetailActivity.this, "Failed to add to cart: " + e.getMessage(), Toast.LENGTH_LONG).show());
+    }
+
+    /**
+     * Handle booking flow for non sq-ft based services:
+     * - If Custom Quote: set fixed advance ₹500
+     * - Else Flat price: compute 10% advance from parsed price
+     */
+    private void handleFlatOrCustomBooking(String priceStr) {
+        boolean custom = isCustomQuote(priceStr);
+        double grandTotal;
+        double advanceAmount;
+
+        if (custom) {
+            grandTotal = 0.0; // unknown now
+            advanceAmount = 500.0; // fixed minimum advance
+        } else {
+            // Flat price path
+            grandTotal = extractPriceFromString(priceStr);
+            if (grandTotal <= 0) {
+                Toast.makeText(this, "Invalid price for this service.", Toast.LENGTH_SHORT).show();
+                return;
+            }
+            advanceAmount = grandTotal * 0.10; // 10%
+        }
+
+        Intent bookingIntent = new Intent(ServiceDetailActivity.this, BookingTimePage.class);
+        bookingIntent.putExtra("SERVICE_OBJECT", currentService);
+        bookingIntent.putExtra("PRICING_TYPE", custom ? "custom_quote" : "flat");
+        bookingIntent.putExtra("DISPLAY_PRICE", priceStr);
+        bookingIntent.putExtra("SQUARE_FEET", 0.0);
+        bookingIntent.putExtra("PRICE_PER_SQFT", 0.0);
+        bookingIntent.putExtra("GRAND_TOTAL", grandTotal);
+        bookingIntent.putExtra("ADVANCE_AMOUNT", advanceAmount);
+        startActivity(bookingIntent);
+    }
+
+    private boolean isPerSqFtPrice(String price) {
+        if (price == null) return false;
+        String p = price.toLowerCase();
+        return p.contains("sq ft") || p.contains("sqft") || p.contains("per sq ft") || p.contains("/sq ft") || p.contains("/sqft");
+    }
+
+    private boolean isCustomQuote(String price) {
+        if (price == null) return false;
+        String p = price.toLowerCase().trim();
+        return p.contains("custom quote") || p.equals("custom") || p.equals("quote");
+    }
+
+    private void showSquareFootDialog() {
+        // Inflate the custom dialog layout
+        LayoutInflater inflater = getLayoutInflater();
+        View dialogView = inflater.inflate(R.layout.dialog_square_foot_input, null);
+
+        // Get references to dialog views
+        EditText editSquareFoot = dialogView.findViewById(R.id.edit_square_foot);
+        TextView textPriceCalculation = dialogView.findViewById(R.id.text_price_calculation);
+        Button btnCancel = dialogView.findViewById(R.id.btn_cancel);
+        Button btnConfirm = dialogView.findViewById(R.id.btn_confirm);
+
+        // Extract price per square foot from service price
+        double pricePerSqFt = extractPriceFromString(currentService.getPrice());
+        
+        // Update price calculation text initially
+        textPriceCalculation.setText("Price per sq ft: ₹" + (int)pricePerSqFt + "\nTotal: ₹0");
+
+        // Create the dialog
+        AlertDialog dialog = new AlertDialog.Builder(this)
+                .setView(dialogView)
+                .setCancelable(true)
+                .create();
+
+        // Add text watcher to calculate total in real time
+        editSquareFoot.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (!s.toString().trim().isEmpty()) {
+                    try {
+                        double sqFt = Double.parseDouble(s.toString().trim());
+                        double total = sqFt * pricePerSqFt;
+                        textPriceCalculation.setText("Price per sq ft: ₹" + (int)pricePerSqFt + 
+                                "\nTotal: ₹" + (int)total);
+                    } catch (NumberFormatException e) {
+                        textPriceCalculation.setText("Price per sq ft: ₹" + (int)pricePerSqFt + 
+                                "\nTotal: ₹0");
+                    }
+                } else {
+                    textPriceCalculation.setText("Price per sq ft: ₹" + (int)pricePerSqFt + 
+                            "\nTotal: ₹0");
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {}
+        });
+
+        // Set up button click listeners
+        btnCancel.setOnClickListener(v -> dialog.dismiss());
+
+        btnConfirm.setOnClickListener(v -> {
+            String sqFtText = editSquareFoot.getText().toString().trim();
+            if (sqFtText.isEmpty()) {
+                Toast.makeText(ServiceDetailActivity.this, "Please enter square footage", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            try {
+                double squareFeet = Double.parseDouble(sqFtText);
+                if (squareFeet <= 0) {
+                    Toast.makeText(ServiceDetailActivity.this, "Please enter a valid square footage", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                double grandTotal = squareFeet * pricePerSqFt;
+                double advanceAmount = grandTotal * 0.10; // 10% advance
+
+                // Navigate to BookingTimePage with the calculated values
+                Intent bookingIntent = new Intent(ServiceDetailActivity.this, BookingTimePage.class);
+                bookingIntent.putExtra("SERVICE_OBJECT", currentService);
+                bookingIntent.putExtra("PRICING_TYPE", "per_sqft");
+                bookingIntent.putExtra("DISPLAY_PRICE", currentService.getPrice());
+                bookingIntent.putExtra("SQUARE_FEET", squareFeet);
+                bookingIntent.putExtra("PRICE_PER_SQFT", pricePerSqFt);
+                bookingIntent.putExtra("GRAND_TOTAL", grandTotal);
+                bookingIntent.putExtra("ADVANCE_AMOUNT", advanceAmount);
+                startActivity(bookingIntent);
+                dialog.dismiss();
+
+            } catch (NumberFormatException e) {
+                Toast.makeText(ServiceDetailActivity.this, "Please enter a valid number", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        dialog.show();
+    }
+
+    private double extractPriceFromString(String priceString) {
+        // Extract numeric value from price string like "₹ 500 onwards" or "₹500"
+        if (priceString == null) return 150.0; // Default price
+        
+        // Remove currency symbols, spaces, and text
+        String numericPart = priceString.replaceAll("[^0-9.]", "");
+        
+        try {
+            return Double.parseDouble(numericPart);
+        } catch (NumberFormatException e) {
+            return 150.0; // Default price if parsing fails
+        }
     }
 
     @Override

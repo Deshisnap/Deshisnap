@@ -38,6 +38,14 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
         SimpleCartItem item = cartItems.get(position);
         holder.serviceNameTextView.setText(item.getServiceName());
         holder.servicePriceTextView.setText(item.getServicePrice()); // Display as is "Rs. 100" or "$20"
+        // Show per-item advance if available
+        double adv = item.getAdvanceAmount();
+        if (adv > 0) {
+            holder.advanceTextView.setText(String.format(java.util.Locale.getDefault(), "Advance: Rs. %.2f", adv));
+            holder.advanceTextView.setVisibility(View.VISIBLE);
+        } else {
+            holder.advanceTextView.setVisibility(View.GONE);
+        }
 
         holder.deleteButton.setOnClickListener(v -> {
             if (deleteListener != null) {
@@ -54,12 +62,14 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
     static class CartViewHolder extends RecyclerView.ViewHolder {
         TextView serviceNameTextView;
         TextView servicePriceTextView;
+        TextView advanceTextView;
         ImageView deleteButton;
 
         public CartViewHolder(@NonNull View itemView) {
             super(itemView);
             serviceNameTextView = itemView.findViewById(R.id.item_service_name);
             servicePriceTextView = itemView.findViewById(R.id.item_service_price);
+            advanceTextView = itemView.findViewById(R.id.item_advance_text);
             deleteButton = itemView.findViewById(R.id.item_delete_button);
         }
     }
