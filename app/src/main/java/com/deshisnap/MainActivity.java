@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.deshisnap.Booking_page.BookingsStatusDetails;
 import com.deshisnap.cart_page.CardAdapter;
+import com.deshisnap.cart_page.CartPage;
 import com.deshisnap.service_related_work.Service;
 
 import java.util.ArrayList;
@@ -192,7 +193,7 @@ public class MainActivity extends AppCompatActivity {
 
         // --- Bottom Navigation Button Listeners ---
         findViewById(R.id.cart_img).setOnClickListener(v -> {
-            startActivity(new Intent(MainActivity.this, com.deshisnap.cart_page.CartPage.class));
+            startActivity(new Intent(MainActivity.this, CartPage.class));
         });
 
         findViewById(R.id.booking_button).setOnClickListener(v -> {

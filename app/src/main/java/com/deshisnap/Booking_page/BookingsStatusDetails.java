@@ -110,6 +110,23 @@ public class BookingsStatusDetails extends AppCompatActivity {
                 @Override
                 public void onCancelled(@NonNull DatabaseError error) { }
             });
+
+
+            findViewById(R.id.cart_img).setOnClickListener(v -> {
+                startActivity(new Intent(BookingsStatusDetails.this, com.deshisnap.cart_page.CartPage.class));
+            });
+
+            findViewById(R.id.booking_button).setOnClickListener(v -> {
+                startActivity(new Intent(BookingsStatusDetails.this, BookingsStatusDetails.class));
+            });
+            findViewById(R.id.inbox_button).setOnClickListener(v -> {
+                startActivity(new Intent(BookingsStatusDetails.this, UserNotificationPage.class));
+            });
+
+            findViewById(R.id.profile_button).setOnClickListener(v -> {
+                startActivity(new Intent(BookingsStatusDetails.this, ProfileActivity.class));
+            });
+
         }
     }
 

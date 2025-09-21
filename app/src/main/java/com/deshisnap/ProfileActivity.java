@@ -129,9 +129,8 @@ public class ProfileActivity extends AppCompatActivity {
                 Toast.makeText(ProfileActivity.this, "Error loading profile: " + databaseError.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
-    }
 
-    private void setupNavigationListeners() {
+
         findViewById(R.id.cart_img).setOnClickListener(v -> {
             startActivity(new Intent(ProfileActivity.this, CartPage.class));
         });
@@ -151,12 +150,9 @@ public class ProfileActivity extends AppCompatActivity {
             startActivity(new Intent(ProfileActivity.this, UserNotificationPage.class));
             finish();
         });
-        findViewById(R.id.book_a_slot_button).setOnClickListener(v -> {
-            startActivity(new Intent(ProfileActivity.this, com.deshisnap.Booking_page.BookingTimePage.class));
-            finish();
-        });
-    }
 
+
+    }
     private void setupProfileComponentListeners() {
         findViewById(R.id.demoprofilecomponent).findViewById(R.id.manage_address_button).setOnClickListener(v -> {
             showManageAddressDialog();
@@ -242,6 +238,9 @@ public class ProfileActivity extends AppCompatActivity {
                     Toast.makeText(ProfileActivity.this, "Failed to update address/location: " + e.getMessage(), Toast.LENGTH_LONG).show();
                     Log.e(TAG, "Failed to update location", e);
                 });
+
+
+
     }
 }
 

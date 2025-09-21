@@ -17,6 +17,7 @@ import com.deshisnap.BookingConfirmationActivity;
 import com.deshisnap.Booking_page.BookingsStatusDetails;
 import com.deshisnap.LoginPage;
 import com.deshisnap.MainActivity;
+import com.deshisnap.ProfileActivity;
 import com.deshisnap.UserNotificationPage;
 import com.deshisnap.R;
 import com.deshisnap.Utils;
@@ -145,21 +146,18 @@ public class CartPage extends AppCompatActivity implements CartAdapter.OnItemDel
         loadAdminOffers();
 
         // --- Existing Navigation Buttons (retain their logic) ---
-        findViewById(R.id.home_button).setOnClickListener(v -> {
-            startActivity(new Intent(CartPage.this, MainActivity.class));
-            finish();
-        });
+        // --- Bottom Navigation Button Listeners ---
+
+
         findViewById(R.id.booking_button).setOnClickListener(v -> {
             startActivity(new Intent(CartPage.this, BookingsStatusDetails.class));
-            finish();
-        });
-        findViewById(R.id.profile_button).setOnClickListener(v -> {
-            startActivity(new Intent(CartPage.this, LoginPage.class));
-            finish();
         });
         findViewById(R.id.inbox_button).setOnClickListener(v -> {
             startActivity(new Intent(CartPage.this, UserNotificationPage.class));
-            finish();
+        });
+
+        findViewById(R.id.profile_button).setOnClickListener(v -> {
+            startActivity(new Intent(CartPage.this, ProfileActivity.class));
         });
     }
 
