@@ -25,8 +25,9 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
 
     public NotificationAdapter(Context context, List<Notification> notificationList) {
         this.context = context;
-        this.notificationList = notificationList;
-        this.filteredNotificationList = new ArrayList<>(notificationList); // Initialize with all notifications
+        // Copy into internal list to avoid sharing the same reference as caller
+        this.notificationList = new ArrayList<>(notificationList);
+        this.filteredNotificationList = new ArrayList<>(this.notificationList); // Initialize with all notifications
     }
 
     @NonNull
@@ -104,8 +105,8 @@ public class NotificationAdapter extends RecyclerView.Adapter<NotificationAdapte
      * @param newNotifications The complete new list of notifications.
      */
     public void setNotifications(List<Notification> newNotifications) {
-        this.notificationList.clear();
-        this.notificationList.addAll(newNotifications);
+        // Replace internal list with a copy to avoid mutating caller's list
+        this.notificationList = new ArrayList<>(newNotifications);
         filter(""); // Re-apply the filter (or show all if no filter is active) after updating the main list
     }
 }
