@@ -14,7 +14,9 @@ constraintlayout = "2.2.0"
 navigationFragment = "2.8.3"
 navigationUi = "2.8.3"
 googleGmsGoogleServices = "4.4.2"
-firebaseAuth = "23.2.1"
+# Firebase Auth 23.2.1 is compiled with Kotlin 2.1.0 metadata.
+# Use a version compatible with Kotlin 1.9.x toolchain used by this project.
+firebaseAuth = "22.3.1"
 firebaseDatabase = "21.0.0"
 activity = "1.10.1"
 adsMobileSdk = "0.17.0-alpha02"
