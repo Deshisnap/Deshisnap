@@ -31,7 +31,7 @@ public class SplashScreenActivity extends AppCompatActivity {
 
                     if (updatedUser != null) {
                         // User still exists, go to MainActivity
-                        Intent intent = new Intent(SplashScreenActivity.this, MainActivity.class);
+                        Intent intent = new Intent(SplashScreenActivity.this, admin_dashboard.class);
                         startActivity(intent);
                     } else {
                         // User was deleted, redirect to LoginPage

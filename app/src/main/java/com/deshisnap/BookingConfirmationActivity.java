@@ -112,33 +112,32 @@ public class BookingConfirmationActivity extends AppCompatActivity {
         dateFormatter = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault());
         dateEditText.setOnClickListener(v -> showDatePickerDialog());
 
-        // --- Time Slot Spinner Setup ---
-        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
-                R.array.time_slots, android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        timeSlotSpinner.setAdapter(adapter);
-        timeSlotSpinner.setPrompt("Select Time Slot");
-        timeSlotSpinner.setSelection(0, false);
-        timeSlotSpinner.setOnItemSelectedListener(new android.widget.AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(android.widget.AdapterView<?> parent, View view, int position, long id) {
-                String val = parent.getItemAtPosition(position).toString();
-                selectedSlotInternal = val;
-                if (selectedSlotTextView != null) {
-                    selectedSlotTextView.setText("Selected Slot: " + val);
+        // --- Time Slot Selection via Dialog ---
+        Button selectSlotBtn = findViewById(R.id.select_time_slot_button);
+        if (selectSlotBtn != null) {
+            selectSlotBtn.setOnClickListener(v -> {
+                final String[] slots = getResources().getStringArray(R.array.time_slots);
+                int preselect = -1;
+                if (selectedSlotInternal != null) {
+                    for (int i = 0; i < slots.length; i++) {
+                        if (slots[i].equals(selectedSlotInternal)) { preselect = i; break; }
+                    }
                 }
-                updateSubmitEnabled();
-            }
-
-            @Override
-            public void onNothingSelected(android.widget.AdapterView<?> parent) {
-                selectedSlotInternal = null;
-                if (selectedSlotTextView != null) {
-                    selectedSlotTextView.setText("Selected Slot: ");
-                }
-                updateSubmitEnabled();
-            }
-        });
+                new androidx.appcompat.app.AlertDialog.Builder(BookingConfirmationActivity.this)
+                        .setTitle("Select Time Slot")
+                        .setSingleChoiceItems(slots, preselect, (dialog, which) -> {
+                            selectedSlotInternal = slots[which];
+                            if (selectedSlotTextView != null) {
+                                selectedSlotTextView.setText("Selected Slot: " + selectedSlotInternal);
+                            }
+                        })
+                        .setPositiveButton("OK", (dialog, which) -> {
+                            updateSubmitEnabled();
+                        })
+                        .setNegativeButton("Cancel", null)
+                        .show();
+            });
+        }
 
         // --- QR Code Display ---
         qrCodeImageView.setImageResource(R.drawable.payment_qr_code);

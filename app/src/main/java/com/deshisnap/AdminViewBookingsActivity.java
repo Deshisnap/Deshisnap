@@ -126,14 +126,15 @@ public class AdminViewBookingsActivity extends AppCompatActivity {
                             if (TextUtils.isEmpty(b.getUserId())) {
                                 b.setUserId(userSnap.getKey());
                             }
-                            // Fallback: if serviceNames list is empty, try single field 'serviceName'
-                            if ((b.getServiceNames() == null || b.getServiceNames().isEmpty())) {
-                                String singleService = bookingSnap.child("serviceName").getValue(String.class);
-                                if (!TextUtils.isEmpty(singleService)) {
-                                    List<String> one = new ArrayList<>();
-                                    one.add(singleService);
-                                    b.setServiceNames(one);
-                                }
+                            // Merge: include both 'serviceNames' array and single 'serviceName' (deduplicated)
+                            List<String> merged = new ArrayList<>();
+                            if (b.getServiceNames() != null) merged.addAll(b.getServiceNames());
+                            String singleService = bookingSnap.child("serviceName").getValue(String.class);
+                            if (!TextUtils.isEmpty(singleService) && !merged.contains(singleService)) {
+                                merged.add(singleService);
+                            }
+                            if (!merged.isEmpty()) {
+                                b.setServiceNames(merged);
                             }
                             // Pull advanceAmount from node if present
                             Double adv = bookingSnap.child("advanceAmount").getValue(Double.class);
