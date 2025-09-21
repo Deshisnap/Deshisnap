@@ -351,12 +351,48 @@ public class AdminViewBookingsActivity extends AppCompatActivity {
                             if ("timestamp".equals(key) && val instanceof Long) {
                                 displayVal = new SimpleDateFormat("dd-MM-yyyy HH:mm", Locale.getDefault())
                                         .format(new Date((Long) val));
+                                addRow(root, key, displayVal);
                             } else if ("serviceNames".equals(key) && field.getValue() instanceof List) {
                                 displayVal = TextUtils.join(", ", (List<?>) field.getValue());
+                                addRow(root, key, displayVal);
+                            } else if ("paymentScreenshotUrl".equals(key) || "screenshotUrl".equals(key)) {
+                                String url = String.valueOf(val);
+                                if (!TextUtils.isEmpty(url)) {
+                                    LinearLayout row = new LinearLayout(AdminViewBookingsActivity.this);
+                                    row.setOrientation(LinearLayout.HORIZONTAL);
+                                    row.setPadding(0, 8, 0, 8);
+
+                                    TextView k2 = new TextView(AdminViewBookingsActivity.this);
+                                    k2.setText(key + ": ");
+                                    k2.setTypeface(null, Typeface.BOLD);
+                                    k2.setPadding(0, 0, 12, 0);
+
+                                    TextView link = new TextView(AdminViewBookingsActivity.this);
+                                    link.setText("Open screenshot");
+                                    link.setTextColor(0xFF03A9F4);
+                                    link.setOnClickListener(v -> {
+                                        Intent i = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+                                        startActivity(i);
+                                    });
+                                    link.setOnLongClickListener(v -> {
+                                        ClipboardManager cb = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
+                                        if (cb != null) {
+                                            cb.setPrimaryClip(ClipData.newPlainText("screenshot_url", url));
+                                            Toast.makeText(AdminViewBookingsActivity.this, "Screenshot URL copied", Toast.LENGTH_SHORT).show();
+                                        }
+                                        return true;
+                                    });
+
+                                    row.addView(k2);
+                                    row.addView(link);
+                                    root.addView(row);
+                                } else {
+                                    addRow(root, key, "");
+                                }
                             } else {
                                 displayVal = String.valueOf(val);
+                                addRow(root, key, displayVal);
                             }
-                            addRow(root, key, displayVal);
                         }
 
                         AlertDialog.Builder builder = new AlertDialog.Builder(AdminViewBookingsActivity.this)
