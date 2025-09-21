@@ -148,6 +148,10 @@ public class CartPage extends AppCompatActivity implements CartAdapter.OnItemDel
         // --- Existing Navigation Buttons (retain their logic) ---
         // --- Bottom Navigation Button Listeners ---
 
+        findViewById(R.id.home_button).setOnClickListener(v -> {
+            startActivity(new Intent(CartPage.this, MainActivity.class));
+            finish();
+        });
 
         findViewById(R.id.booking_button).setOnClickListener(v -> {
             startActivity(new Intent(CartPage.this, BookingsStatusDetails.class));

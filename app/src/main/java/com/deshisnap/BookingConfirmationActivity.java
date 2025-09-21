@@ -161,7 +161,8 @@ public class BookingConfirmationActivity extends AppCompatActivity {
 
         // --- Upload Screenshot Button Listener ---
         uploadScreenshotButton.setOnClickListener(v -> {
-            checkAndRequestPermissions();
+            // Storage permission is not required for ACTION_GET_CONTENT/SAF
+            openImagePicker();
         });
 
         // --- Submit Booking Button Listener ---
@@ -185,26 +186,14 @@ public class BookingConfirmationActivity extends AppCompatActivity {
     }
 
     private void checkAndRequestPermissions() {
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_MEDIA_IMAGES)
-                != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(this,
-                    new String[]{Manifest.permission.READ_MEDIA_IMAGES},
-                    PERMISSION_REQUEST_CODE);
-        } else {
-            openImagePicker();
-        }
+        // Not needed when using ActivityResultContracts.GetContent (SAF). Pick directly.
+        openImagePicker();
     }
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if (requestCode == PERMISSION_REQUEST_CODE) {
-            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                openImagePicker();
-            } else {
-                Toast.makeText(this, "Permission denied to read storage. Cannot upload screenshot.", Toast.LENGTH_LONG).show();
-            }
-        }
+        // No-op: we don't require storage permission for SAF picking
     }
 
     private void openImagePicker() {
