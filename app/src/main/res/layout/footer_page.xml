@@ -9,7 +9,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Feel Free To contact Us"
+        android:text="Feel Free To contact Us deshisnap247service@gmail.com"
         android:textColor="@color/white"
         android:layout_centerHorizontal="true"
         android:textSize="20sp"
@@ -21,3 +21,4 @@
     </TextView>
 
 </RelativeLayout>
+
