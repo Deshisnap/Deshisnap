@@ -21,8 +21,8 @@
 
         <ImageView
             android:id="@+id/cardImage"
-            android:layout_width="140dp"
-            android:layout_height="140dp"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
             android:scaleType="centerCrop"
             android:src="@drawable/ic_launcher_background"
             android:contentDescription="Image"
@@ -33,7 +33,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Sample Text"
-            android:textColor="@color/textcolor"
+            android:textColor="@color/white"
             android:textSize="18sp"
             android:textStyle="bold"
             android:gravity="center"
