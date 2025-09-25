@@ -18,6 +18,9 @@ public class SplashScreenActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.splash_screen); // Your splash screen layout
 
+        TextView title = findViewById(R.id.title);
+        Utils.applyGradientToText(title, "#04FDAA", "#01D3F8");
+
         mAuth = FirebaseAuth.getInstance();
 
         // Delay for 3 seconds
