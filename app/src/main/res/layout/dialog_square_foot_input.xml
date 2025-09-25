@@ -89,7 +89,7 @@
             android:layout_weight="1"
             android:text="Confirm"
             android:textColor="@color/white"
-            android:background="@drawable/time_slot_selected_bg"
+            android:background="@drawable/button_ripple_bg"
             android:layout_marginStart="8dp"
             android:padding="12dp"/>
 
