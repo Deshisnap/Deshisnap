@@ -88,7 +88,7 @@ public class MainActivity extends AppCompatActivity {
 
         // Plumber Data
         homeMaintenanceServices.add(new Service(
-                R.drawable.plumber,
+                R.drawable.plumbing,
                 "Plumber",
                 "Reliable and certified plumbing solutions for your home and office.",
                 "Our expert plumbers are available 24/7 to handle all types of plumbing emergencies and routine maintenance. From fixing leaky pipes and clogged drains to installing new fixtures and water heaters, we provide comprehensive services with a focus on quality and customer satisfaction. All our technicians are background-checked and fully insured for your peace of mind. We use only high-quality materials and offer transparent pricing with no hidden fees.",
@@ -110,7 +110,7 @@ public class MainActivity extends AppCompatActivity {
 
         // Painter Data
         homeMaintenanceServices.add(new Service(
-                R.drawable.homerepair, // Assuming homerepair is your painter image
+                R.drawable.painter, // Assuming homerepair is your painter image
                 "Painter",
                 "Professional painting services for a fresh new look.",
                 "Transform your space with our professional painting services. We offer interior and exterior painting, wall preparation, texture painting, and custom color matching. Our experienced painters ensure a smooth finish and a clean work environment. Free consultation and color guidance available.",
@@ -121,7 +121,7 @@ public class MainActivity extends AppCompatActivity {
 
         // Carpenter Data
         homeMaintenanceServices.add(new Service(
-                R.drawable.homeservice, // Assuming homeservice is your carpenter image
+                R.drawable.carpainter, // Assuming homeservice is your carpenter image
                 "Carpenter",
                 "Skilled carpentry for furniture repair, custom work, and installations.",
                 "Expert carpenters providing a wide range of services including furniture repair, custom furniture design, modular kitchen installation, door/window fitting, and wooden partition work. We combine craftsmanship with modern tools to deliver durable and aesthetically pleasing results.",
@@ -132,7 +132,7 @@ public class MainActivity extends AppCompatActivity {
 
         // AC Technician Data
         homeMaintenanceServices.add(new Service(
-                R.drawable.homerepair, // Assuming you have an AC technician image
+                R.drawable.airconditioner, // Assuming you have an AC technician image
                 "AC Technician",
                 "Expert AC repair, service, and installation.",
                 "Professional AC technicians for all brands and types of air conditioners. Services include routine servicing, gas refilling, repairs of common issues like cooling problems or leakage, and new AC installation. Extend the life of your AC with our reliable and timely service.",
@@ -143,7 +143,7 @@ public class MainActivity extends AppCompatActivity {
 
         // Tile Worker Data
         homeMaintenanceServices.add(new Service(
-                R.drawable.homerepair, // Assuming you have a tile worker image
+                R.drawable.tilework, // Assuming you have a tile worker image
                 "Tile Worker",
                 "Precise tile installation and repair services.",
                 "Skilled tile workers for professional flooring, wall tiling, and bathroom tiling. We handle ceramic, porcelain, mosaic, and natural stone tiles. Services include new installation, re-grouting, repair of broken tiles, and waterproofing solutions for bathrooms.",
@@ -163,7 +163,7 @@ public class MainActivity extends AppCompatActivity {
 
         // House Cleaning Data
         householdServices.add(new Service(
-                R.drawable.homeservice, // Assuming you have a house cleaning image
+                R.drawable.houseclean, // Assuming you have a house cleaning image
                 "House Cleaning",
                 "Professional deep cleaning services for sparkling homes.",
                 "Comprehensive house cleaning services for residential properties. Includes deep cleaning of kitchens, bathrooms, living areas, and bedrooms. Our trained staff use eco-friendly products and advanced equipment to ensure a hygienic and spotless environment. Customizable cleaning packages available.",
@@ -174,7 +174,7 @@ public class MainActivity extends AppCompatActivity {
 
         // Beautician Data
         householdServices.add(new Service(
-                R.drawable.homeservice, // Assuming you have a beautician image
+                R.drawable.beautician, // Assuming you have a beautician image
                 "Beautician",
                 "At-home beauty services for your convenience.",
                 "Experience salon-quality beauty services at the comfort of your home. Our certified beauticians offer a wide range of services including facials, waxing, manicure, pedicure, hair styling, and bridal makeup. Using branded products for best results.",
@@ -194,7 +194,7 @@ public class MainActivity extends AppCompatActivity {
 
         // Tourist Guide Data
         lifestyleServices.add(new Service(
-                R.drawable.homeservice, // Assuming you have a tourist guide image
+                R.drawable.touristguide, // Assuming you have a tourist guide image
                 "Tourist Guide",
                 "Explore the city with knowledgeable local guides.",
                 "Discover the hidden gems and rich history of Bhubaneswar with our experienced tourist guides. We offer personalized tours for individuals and groups, covering historical sites, cultural landmarks, and local culinary experiences. Multi-lingual guides available upon request.",
@@ -205,7 +205,7 @@ public class MainActivity extends AppCompatActivity {
 
         // Interior Designer Data
         lifestyleServices.add(new Service(
-                R.drawable.homeservice, // Assuming you have an interior designer image
+                R.drawable.interior_design, // Assuming you have an interior designer image
                 "Interior Designer",
                 "Create your dream space with expert interior design.",
                 "Transform your home or office with our creative and functional interior design solutions. From conceptualization to execution, we handle space planning, furniture selection, lighting, color schemes, and material sourcing. Residential and commercial projects undertaken.",
