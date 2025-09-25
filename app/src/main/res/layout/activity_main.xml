@@ -94,6 +94,8 @@
                         android:drawableStart="@drawable/search_img"
                         android:drawablePadding="8dp"
                         android:hint="search"
+                        android:textColorHint="#F8BFBDBD"
+                        android:textColor="@color/white"
                         android:background="@drawable/search_bg"
                         android:paddingStart="16dp"
                         android:paddingEnd="16dp"
@@ -194,12 +196,13 @@
                     android:layout_below="@id/textView3"
                     android:layout_alignParentStart="true"
                     android:layout_marginTop="30dp"
+                    android:layout_marginStart="10dp"
 
                     android:fontFamily="sans-serif"
                     android:text="Home Maintenance &amp; Repair🪛"
                     android:textColor="@color/textcolor"
                     android:textFontWeight="400"
-                    android:textSize="25sp" />
+                    android:textSize="20sp" />
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/homemaintain_scroll"
@@ -224,7 +227,7 @@
                     android:text="Household Services🧹"
                     android:textColor="@color/textcolor"
                     android:textFontWeight="400"
-                    android:textSize="25sp" />
+                    android:textSize="20sp" />
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/householdservice_scroll"
@@ -250,7 +253,7 @@
                     android:text="Life style &amp; Event services"
                     android:textColor="@color/textcolor"
                     android:textFontWeight="400"
-                    android:textSize="25sp" />
+                    android:textSize="20sp" />
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/lifestyle_scroll"
@@ -307,7 +310,7 @@
         android:background="#00FFFFFF"
         android:elevation="8dp"
         android:orientation="horizontal"
-        android:padding="1dp"
+
         app:layout_constraintBottom_toBottomOf="parent">  <!-- ensures it sits above the ScrollView -->
 
         <include layout="@layout/navbar"
