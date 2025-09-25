@@ -15,6 +15,8 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
@@ -30,6 +32,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.ValueEventListener;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -119,6 +124,7 @@ public class BookingConfirmationActivity extends AppCompatActivity {
             serviceNamesTextView.setText("Services: N/A");
         }
 
+
         // --- Date Picker Setup ---
         calendar = Calendar.getInstance();
         dateFormatter = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault());
@@ -151,8 +157,8 @@ public class BookingConfirmationActivity extends AppCompatActivity {
             });
         }
 
-        // --- QR Code Display ---
-        qrCodeImageView.setImageResource(R.drawable.payment_qr_code);
+        // --- QR Code Display (load from Admin Storage if available) ---
+        loadAdminQrInto(qrCodeImageView);
         Utils.applyGradientToText(grandTotalTextView, "#04FDAA", "#01D3F8");
         Utils.applyGradientToText(serviceNamesTextView, "#04FDAA", "#01D3F8");
 
@@ -179,6 +185,38 @@ public class BookingConfirmationActivity extends AppCompatActivity {
         // --- Submit Booking Button Listener ---
         submitBookingButton.setOnClickListener(v -> {
             submitBooking();
+        });
+    }
+
+    private void loadAdminQrInto(final ImageView target) {
+        final long MAX_DOWNLOAD_BYTES = 2 * 1024 * 1024; // 2MB
+        DatabaseReference urlRef = FirebaseDatabase.getInstance().getReference("admin").child("qr").child("url");
+        urlRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                String url = snapshot.getValue(String.class);
+                if (url == null || url.isEmpty()) {
+                    // keep default asset if no URL
+                    target.setImageResource(R.drawable.payment_qr_code);
+                    return;
+                }
+                StorageReference storageRef = FirebaseStorage.getInstance().getReference().child("admin/qr/qr.jpg");
+                storageRef.getBytes(MAX_DOWNLOAD_BYTES)
+                        .addOnSuccessListener(bytes -> {
+                            Bitmap bmp = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
+                            target.setImageBitmap(bmp);
+                        })
+                        .addOnFailureListener(e -> {
+                            Log.e(TAG, "Failed to load admin QR image: " + e.getMessage());
+                            target.setImageResource(R.drawable.payment_qr_code);
+                        });
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                Log.e(TAG, "Failed to read admin QR URL: " + error.getMessage());
+                target.setImageResource(R.drawable.payment_qr_code);
+            }
         });
     }
 

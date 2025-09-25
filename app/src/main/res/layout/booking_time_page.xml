@@ -415,7 +415,7 @@
                 android:id="@+id/qr_code_img"
                 android:layout_width="300dp"
                 android:layout_height="300dp"
-                android:src="@drawable/payment_qr_code"
+                android:src="@drawable/ix_about"
                 android:layout_below="@id/scan_qrcode_text"
                 android:layout_centerHorizontal="true"
                 android:contentDescription="Payment QR Code"

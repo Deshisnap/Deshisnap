@@ -7,6 +7,9 @@ import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
@@ -17,6 +20,13 @@ import androidx.activity.EdgeToEdge;
 import com.deshisnap.MainActivity;
 import com.deshisnap.R;
 import com.deshisnap.service_related_work.Service;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -157,6 +167,12 @@ public class BookingTimePage extends AppCompatActivity {
         findViewById(R.id.profile_button).setOnClickListener(v -> {
             Toast.makeText(this, "Profile Clicked!", Toast.LENGTH_SHORT).show();
         });
+
+        // Load Admin QR into ImageView if present
+        ImageView qrImg = findViewById(R.id.qr_code_img);
+        if (qrImg != null) {
+            loadAdminQrInto(qrImg);
+        }
     }
 
     private void initializeDateViews() {
@@ -329,5 +345,32 @@ public class BookingTimePage extends AppCompatActivity {
             // Nothing to show
             grandTotalToPayText.setText("You have to pay this: ₹0.00");
         }
+    }
+
+    private void loadAdminQrInto(final ImageView target) {
+        final long MAX_DOWNLOAD_BYTES = 2 * 1024 * 1024; // 2MB
+        DatabaseReference urlRef = FirebaseDatabase.getInstance().getReference("admin").child("qr").child("url");
+        urlRef.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot snapshot) {
+                String url = snapshot.getValue(String.class);
+                if (url == null || url.isEmpty()) {
+                    Log.d(TAG, "No admin QR URL set.");
+                    return;
+                }
+                StorageReference storageRef = FirebaseStorage.getInstance().getReference().child("admin/qr/qr.jpg");
+                storageRef.getBytes(MAX_DOWNLOAD_BYTES)
+                        .addOnSuccessListener(bytes -> {
+                            Bitmap bmp = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
+                            target.setImageBitmap(bmp);
+                        })
+                        .addOnFailureListener(e -> Log.e(TAG, "Failed to load admin QR image: " + e.getMessage()));
+            }
+
+            @Override
+            public void onCancelled(DatabaseError error) {
+                Log.e(TAG, "Failed to read admin QR URL: " + error.getMessage());
+            }
+        });
     }
 }
