@@ -76,6 +76,18 @@ public class BookingConfirmationActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_booking_confirmation); // Make sure this matches your XML
 
+        TextView booking_title = findViewById(R.id.booking_title);
+        Utils.applyGradientToText(booking_title, "#04FDAA", "#01D3F8");
+
+        TextView qr_code_label = findViewById(R.id.qr_code_label);
+        Utils.applyGradientToText(qr_code_label, "#04FDAA", "#01D3F8");
+
+        TextView screenshot_label = findViewById(R.id.screenshot_label);
+        Utils.applyGradientToText(screenshot_label, "#04FDAA", "#01D3F8");
+
+        TextView schedule_label = findViewById(R.id.schedule_label);
+        Utils.applyGradientToText(schedule_label, "#04FDAA", "#01D3F8");
+
         // Initialize Firebase
         mAuth = FirebaseAuth.getInstance();
         bookingsRef = FirebaseDatabase.getInstance().getReference("bookings");
