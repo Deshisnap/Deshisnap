@@ -20,7 +20,7 @@ public class admin_dashboard extends AppCompatActivity {
         // Initialize TextViews
         tvViewBookings = findViewById(R.id.tv_view_bookings);
         tvManageUsers = findViewById(R.id.tv_manage_users);
-        tvManageServices = findViewById(R.id.tv_manage_services);
+        tvManageServices = findViewById(R.id.tv_manage_qr);
         tvSendNotification = findViewById(R.id.tv_send_notification);
 
         // Set OnClickListeners to directly launch respective activities
@@ -33,7 +33,7 @@ public class admin_dashboard extends AppCompatActivity {
         });
 
         tvManageServices.setOnClickListener(v -> {
-            startActivity(new Intent(admin_dashboard.this, ManageServicesActivity.class));
+            startActivity(new Intent(admin_dashboard.this, Admin_Manage_QR.class));
         });
 
         tvSendNotification.setOnClickListener(v -> {

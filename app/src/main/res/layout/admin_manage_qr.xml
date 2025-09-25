@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:gravity="center"
+    android:background="@color/appHometheme">
+
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Manage QR"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:textSize="22sp"
+        android:layout_marginBottom="16dp" />
+
+    <ImageView
+        android:id="@+id/iv_qr_preview"
+        android:layout_width="220dp"
+        android:layout_height="220dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/electrician"
+        android:background="@drawable/time_slot_bg"
+        android:padding="8dp"
+        android:contentDescription="QR Preview" />
+
+    <TextView
+        android:id="@+id/tv_status"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="No QR uploaded"
+        android:textColor="@color/white"
+        android:layout_marginTop="12dp" />
+
+    <Button
+        android:id="@+id/btn_primary"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Add QR"
+        android:layout_marginTop="20dp" />
+
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        style="@android:style/Widget.DeviceDefault.Light.ProgressBar.Horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:indeterminate="true"
+        android:visibility="gone" />
+
+</LinearLayout>

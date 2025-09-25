@@ -152,14 +152,14 @@
                 android:layout_below="@id/row1">
 
                 <TextView
-                    android:id="@+id/tv_manage_services"
+                    android:id="@+id/tv_manage_qr"
                     android:layout_width="0dp"
                     android:layout_height="140dp"
                     android:layout_weight="1"
                     android:layout_marginEnd="4dp"
                     android:background="@drawable/time_slot_bg"
                     android:gravity="center"
-                    android:text="Add / remove service"
+                    android:text="Add / remove QR"
                     android:textColor="@color/white"
                     android:textSize="15sp" />
 
