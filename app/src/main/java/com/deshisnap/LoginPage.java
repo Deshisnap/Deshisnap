@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.ProgressBar;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -43,6 +44,7 @@ public class LoginPage extends AppCompatActivity {
     private EditText phoneNumberInput;
     private TextView sendOtpButton, googleLoginButton, whatsappLoginButton,notAuser;
     private GoogleSignInClient mGoogleSignInClient;
+    private ProgressBar loginProgress;
 
     @SuppressLint("WrongViewCast")
     @Override
@@ -71,6 +73,7 @@ public class LoginPage extends AppCompatActivity {
         sendOtpButton = findViewById(R.id.send_otp);
         googleLoginButton = findViewById(R.id.google_text);
         whatsappLoginButton = findViewById(R.id.whatsapp_text);
+        loginProgress = findViewById(R.id.login_progress);
 
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.default_web_client_id))
@@ -97,10 +100,12 @@ public class LoginPage extends AppCompatActivity {
             }
 
             // Start the phone verification process
+            setLoading(true);
             sendOtp(phoneNumber);
         });
 
         googleLoginButton.setOnClickListener(v -> {
+            setLoading(true);
             googleSignIn();
         });
 
@@ -137,6 +142,7 @@ public class LoginPage extends AppCompatActivity {
                         public void onVerificationFailed(FirebaseException e) {
                             Log.e("LoginPage", "Phone verification failed: " + e.getMessage(), e);
                             Toast.makeText(LoginPage.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                            setLoading(false);
                         }
 
                         @Override
@@ -153,6 +159,7 @@ public class LoginPage extends AppCompatActivity {
                             // For this "Login Page", we assume data is already registered or will be minimal.
                             // We won't pass firstName, lastName, email, location to OtpPage from here for phone login.
                             startActivity(otpIntent);
+                            setLoading(false);
                         }
                     });
         } catch (Exception e) {
@@ -220,6 +227,7 @@ public class LoginPage extends AppCompatActivity {
                 Log.e("LoginPage", "Firebase Auth with Google failed: " + task.getException().getMessage(), task.getException());
                 Toast.makeText(LoginPage.this, "Authentication Failed", Toast.LENGTH_SHORT).show();
             }
+            setLoading(false);
         });
     }
 
@@ -406,6 +414,13 @@ public class LoginPage extends AppCompatActivity {
 
     private void handleUserDataSaveFailure(String errorMessage) {
         Toast.makeText(LoginPage.this, "Error processing login: " + errorMessage, Toast.LENGTH_SHORT).show();
+    }
+
+    private void setLoading(boolean loading) {
+        if (loginProgress != null) loginProgress.setVisibility(loading ? View.VISIBLE : View.GONE);
+        if (sendOtpButton != null) sendOtpButton.setEnabled(!loading);
+        if (googleLoginButton != null) googleLoginButton.setEnabled(!loading);
+        if (whatsappLoginButton != null) whatsappLoginButton.setEnabled(!loading);
     }
 
     private void redirectAfterLogin() {

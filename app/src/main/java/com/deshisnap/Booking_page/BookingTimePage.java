@@ -349,6 +349,8 @@ public class BookingTimePage extends AppCompatActivity {
 
     private void loadAdminQrInto(final ImageView target) {
         final long MAX_DOWNLOAD_BYTES = 2 * 1024 * 1024; // 2MB
+        final View progress = findViewById(R.id.qr_progress);
+        if (progress != null) progress.setVisibility(View.VISIBLE);
         DatabaseReference urlRef = FirebaseDatabase.getInstance().getReference("admin").child("qr").child("url");
         urlRef.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -356,6 +358,7 @@ public class BookingTimePage extends AppCompatActivity {
                 String url = snapshot.getValue(String.class);
                 if (url == null || url.isEmpty()) {
                     Log.d(TAG, "No admin QR URL set.");
+                    if (progress != null) progress.setVisibility(View.GONE);
                     return;
                 }
                 StorageReference storageRef = FirebaseStorage.getInstance().getReference().child("admin/qr/qr.jpg");
@@ -363,13 +366,18 @@ public class BookingTimePage extends AppCompatActivity {
                         .addOnSuccessListener(bytes -> {
                             Bitmap bmp = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
                             target.setImageBitmap(bmp);
+                            if (progress != null) progress.setVisibility(View.GONE);
                         })
-                        .addOnFailureListener(e -> Log.e(TAG, "Failed to load admin QR image: " + e.getMessage()));
+                        .addOnFailureListener(e -> {
+                            Log.e(TAG, "Failed to load admin QR image: " + e.getMessage());
+                            if (progress != null) progress.setVisibility(View.GONE);
+                        });
             }
 
             @Override
             public void onCancelled(DatabaseError error) {
                 Log.e(TAG, "Failed to read admin QR URL: " + error.getMessage());
+                if (progress != null) progress.setVisibility(View.GONE);
             }
         });
     }

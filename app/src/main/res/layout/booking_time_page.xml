@@ -423,6 +423,16 @@
 
             </ImageView>
 
+            <ProgressBar
+                android:id="@+id/qr_progress"
+                style="@android:style/Widget.DeviceDefault.Light.ProgressBar.Small"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/qr_code_img"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="8dp"
+                android:visibility="gone" />
+
             <Button
                 android:id="@+id/upload_screenshot_button"
                 android:layout_width="wrap_content"

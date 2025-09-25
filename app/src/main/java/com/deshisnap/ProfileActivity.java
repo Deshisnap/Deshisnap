@@ -167,7 +167,7 @@ public class ProfileActivity extends AppCompatActivity {
         });
 
         findViewById(R.id.demoprofilecomponent).findViewById(R.id.about_us_button).setOnClickListener(v -> {
-            Toast.makeText(ProfileActivity.this, "About Us Clicked!", Toast.LENGTH_SHORT).show();
+            startActivity(new Intent(ProfileActivity.this, AboutUsActivity.class));
         });
 
         // Logout: sign out and redirect to LoginPage
