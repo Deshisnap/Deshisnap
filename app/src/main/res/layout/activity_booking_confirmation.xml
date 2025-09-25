@@ -95,7 +95,7 @@
             android:layout_below="@id/screenshot_label"
             android:text="Choose Image"
             android:layout_centerHorizontal="true"
-            android:backgroundTint="@color/nav_item_active"
+            android:background="@drawable/app_button_ripple"
             android:textColor="@color/white"
             android:padding="12dp"
             android:layout_marginBottom="16dp"/>
@@ -140,10 +140,10 @@
             android:clickable="true"
             android:longClickable="false"
             android:padding="12dp"
-            android:drawableEnd="@drawable/calendar" android:background="@drawable/rounded_edittext_background"
+            android:drawableEnd="@drawable/calendar" android:background="@drawable/app_button_ripple"
             android:textColor="@color/white"
             android:textColorHint="@color/white"
-            android:textSize="16sp"
+            android:textSize="18sp"
             android:layout_marginBottom="16dp"/>
 
         <Button
@@ -152,7 +152,8 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/date_edit_text"
             android:text="Select Time Slot"
-            android:backgroundTint="@color/nav_item_active"
+
+            android:background="@drawable/app_button_ripple"
             android:textColor="@color/white"
             android:textSize="16sp"
             android:padding="12dp"
@@ -188,7 +189,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/selected_slot_text_view"
             android:text="Submit Booking"
-            android:backgroundTint="@color/nav_item_active"
+            android:background="@drawable/app_button_ripple"
             android:textColor="@color/white"
             android:textSize="18sp"
             android:padding="16dp"
