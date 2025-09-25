@@ -79,6 +79,8 @@ public class CartPage extends AppCompatActivity implements CartAdapter.OnItemDel
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+        TextView cart_title = findViewById(R.id.cart_title);
+        Utils.applyGradientToText(cart_title, "#04FDAA", "#01D3F8");
 
         // Initialize Firebase
         mAuth = FirebaseAuth.getInstance();
