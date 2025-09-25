@@ -27,7 +27,7 @@
         android:layout_alignParentStart="true"
         android:layout_marginTop="4dp"
         android:text="Rs. 100"
-        android:textColor="@color/nav_item_active"
+        android:textColor="@color/textcolor"
         android:textSize="18sp"
         android:textFontWeight="700"
         android:fontFamily="sans-serif" />
@@ -51,7 +51,7 @@
         android:layout_height="70dp"
         android:layout_alignParentEnd="true"
         android:layout_centerVertical="true"
-        android:src="@drawable/delete"
+        android:src="@drawable/dustbin"
         android:background="?attr/selectableItemBackgroundBorderless"
         android:clickable="true"
         android:focusable="true"
