@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:padding="15dp"
     android:background="@drawable/login">
 
 
@@ -81,7 +82,7 @@
 
                     android:layout_centerHorizontal="true"
                     android:textAlignment="center"
-                    android:padding="5dp"
+                    android:padding="10dp"
 
                     >
 
@@ -94,7 +95,7 @@
                      android:layout_height="wrap_content"
                      android:layout_below="@+id/send_otp"
                      android:background="@drawable/edit_text_bg"
-                     android:padding="5dp"
+                     android:padding="10dp"
                      android:layout_marginTop="40dp"
 
 
@@ -117,7 +118,7 @@
                          android:text="Login With"
                          android:layout_centerVertical="true"
                          android:layout_centerHorizontal="true"
-                         android:textSize="16dp"
+                         android:textSize="20dp"
                          android:textColor="@color/black"
                          android:fontFamily="@string/font"
                          android:textFontWeight="500"
@@ -178,12 +179,13 @@
                     android:id="@+id/not_a_user"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Not A user Register Here"
+                    android:text="Not A user? Register Here"
                     android:textColor="@color/white"
                     android:layout_below="@id/whatsapp_login_button"
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="15dp"
                     android:textFontWeight="500"
+                    android:textSize="15sp"
                     android:fontFamily="@string/font"
                     >
 
