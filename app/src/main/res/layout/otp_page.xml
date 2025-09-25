@@ -88,6 +88,7 @@
                         android:backgroundTint="@color/otp_box_colour"
                         android:hint="-"
                         android:textColorHint="@color/white"
+                        android:textColor="@color/white"
                         />
 
                     <EditText
@@ -102,6 +103,7 @@
                         android:backgroundTint="@color/otp_box_colour"
                         android:hint="-"
                         android:textColorHint="@color/white"
+                        android:textColor="@color/white"
                         />
 
                     <EditText
@@ -116,6 +118,7 @@
                         android:backgroundTint="@color/otp_box_colour"
                         android:hint="-"
                         android:textColorHint="@color/white"
+                        android:textColor="@color/white"
 
                         />
 
@@ -131,6 +134,7 @@
                         android:backgroundTint="@color/otp_box_colour"
                         android:hint="-"
                         android:textColorHint="@color/white"
+                        android:textColor="@color/white"
 
                         />
 
@@ -146,6 +150,7 @@
                         android:backgroundTint="@color/otp_box_colour"
                         android:hint="-"
                         android:textColorHint="@color/white"
+                        android:textColor="@color/white"
                         />
 
                     <EditText
@@ -159,6 +164,7 @@
                         android:backgroundTint="@color/otp_box_colour"
                         android:hint="-"
                         android:textColorHint="@color/white"
+                        android:textColor="@color/white"
                         />
                 </LinearLayout>
 
