@@ -10,17 +10,20 @@
     android:id="@+id/toolbar"
     android:layout_width="0dp"
     android:layout_height="?attr/actionBarSize"
-    android:background="@color/white"
+
     android:elevation="4dp"
     app:layout_constraintTop_toTopOf="parent"
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintEnd_toEndOf="parent"
-    app:navigationIcon="?attr/homeAsUpIndicator" > <TextView
+    app:navigationIcon="?attr/homeAsUpIndicator" >
+    <TextView
     android:id="@+id/toolbar_title"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_gravity="center"
-    android:text="Service Details" android:textColor="@color/black"
+    android:text="Service Details"
+
+        android:textColor="#03FBAD"
     android:textSize="20sp"
     android:textStyle="bold" />
 </androidx.appcompat.widget.Toolbar>
@@ -43,16 +46,15 @@
                 android:id="@+id/image_service"
                 android:layout_width="match_parent"
                 android:layout_height="220dp"
-                android:layout_marginBottom="16dp"
+                android:layout_margin="16dp"
                 android:contentDescription="Service Image"
-                android:scaleType="centerCrop"
                 android:src="@drawable/plumber" />
 
             <TextView
                 android:id="@+id/text_detail_service_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Plumber Services" android:textColor="@color/nav_item_active"
+                android:text="Plumber Services" android:textColor="#03FBAD"
                 android:textSize="24sp"
                 android:textStyle="bold"
                 android:fontFamily="sans-serif-medium"
@@ -94,28 +96,11 @@
                 android:layout_marginBottom="16dp"/>
 
             <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="About This Service"
-                android:textColor="@color/nav_item_active"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                android:layout_marginBottom="8dp"/>
-
-            <TextView
-                android:id="@+id/text_detail_long_description"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Our expert plumbers are available 24/7 to handle all types of plumbing emergencies and routine maintenance. From fixing leaky pipes and clogged drains to installing new fixtures and water heaters, we provide comprehensive services with a focus on quality and customer satisfaction. All our technicians are background-checked and fully insured for your peace of mind. We use only high-quality materials and offer transparent pricing with no hidden fees." android:textColor="@color/white"
-                android:textSize="14sp"
-                android:lineSpacingExtra="3dp"
-                android:layout_marginBottom="24dp"/>
-
-            <TextView
+                android:id="@+id/service_include"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Services Included"
-                android:textColor="@color/nav_item_active"
+                android:textColor="#03FBAD"
                 android:textSize="18sp"
                 android:textStyle="bold"
                 android:layout_marginBottom="8dp"/>
@@ -129,6 +114,27 @@
                 android:lineSpacingExtra="3dp"
                 android:layout_marginBottom="24dp"/>
 
+            <TextView
+                android:id="@+id/about_this_service"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="About This Service"
+                android:textColor="#03FBAD"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="8dp"/>
+
+            <TextView
+                android:id="@+id/text_detail_long_description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Our expert plumbers are available 24/7 to handle all types of plumbing emergencies and routine maintenance. From fixing leaky pipes and clogged drains to installing new fixtures and water heaters, we provide comprehensive services with a focus on quality and customer satisfaction. All our technicians are background-checked and fully insured for your peace of mind. We use only high-quality materials and offer transparent pricing with no hidden fees." android:textColor="@color/white"
+                android:textSize="14sp"
+                android:lineSpacingExtra="3dp"
+                android:layout_marginBottom="24dp"/>
+
+
+
         </LinearLayout>
     </ScrollView>
 
@@ -138,7 +144,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:padding="16dp"
-        android:background="@color/white"
+        android:background="@drawable/glass_black"
         android:elevation="8dp"
         android:gravity="center_vertical"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -155,14 +161,16 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Starting from"
-                android:textColor="#888888"
-                android:textSize="12sp"/>
+                android:textColor="#FFFEFE"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                />
             <TextView
                 android:id="@+id/text_detail_service_price"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="₹ 500"
-                android:textColor="#4CAF50"
+                android:textColor="#03FBAD"
                 android:textSize="22sp"
                 android:textStyle="bold"
                 android:fontFamily="sans-serif-medium"/>
