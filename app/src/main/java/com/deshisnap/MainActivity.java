@@ -97,6 +97,17 @@ public class MainActivity extends AppCompatActivity {
                 "- Leak detection & repair\n- Drain cleaning & unclogging\n- Faucet & toilet installation\n- Water heater repair & installation\n- Pipe fitting & replacement"
         ));
 
+        // AC Technician Data
+        homeMaintenanceServices.add(new Service(
+                R.drawable.airconditioner, // Assuming you have an AC technician image
+                "AC Technician",
+                "Expert AC repair, service, and installation.",
+                "Professional AC technicians for all brands and types of air conditioners. Services include routine servicing, gas refilling, repairs of common issues like cooling problems or leakage, and new AC installation. Extend the life of your AC with our reliable and timely service.",
+                "₹ 599 per washing",
+                "4.7 (200 reviews)",
+                "- AC servicing & cleaning\n- Gas refilling\n- Compressor repair\n- Installation & uninstallation\n- Troubleshooting & diagnostics"
+        ));
+
         // Electrician Data
         homeMaintenanceServices.add(new Service(
                 R.drawable.electrician,
@@ -130,16 +141,7 @@ public class MainActivity extends AppCompatActivity {
                 "- Furniture repair & assembly\n- Custom furniture design\n- Door & window installation\n- Cabinetry & shelving\n- Wooden flooring repair"
         ));
 
-        // AC Technician Data
-        homeMaintenanceServices.add(new Service(
-                R.drawable.airconditioner, // Assuming you have an AC technician image
-                "AC Technician",
-                "Expert AC repair, service, and installation.",
-                "Professional AC technicians for all brands and types of air conditioners. Services include routine servicing, gas refilling, repairs of common issues like cooling problems or leakage, and new AC installation. Extend the life of your AC with our reliable and timely service.",
-                "₹ 599 per washing",
-                "4.7 (200 reviews)",
-                "- AC servicing & cleaning\n- Gas refilling\n- Compressor repair\n- Installation & uninstallation\n- Troubleshooting & diagnostics"
-        ));
+
 
         // Tile Worker Data
         homeMaintenanceServices.add(new Service(
@@ -183,6 +185,17 @@ public class MainActivity extends AppCompatActivity {
                 "- Facials & skincare\n- Waxing & threading\n- Manicure & Pedicure\n- Hair styling & treatments\n- Bridal & party makeup"
         ));
 
+        // Painter Data
+        householdServices.add(new Service(
+                R.drawable.painter, // Assuming homerepair is your painter image
+                "Painter",
+                "Professional painting services for a fresh new look.",
+                "Transform your space with our professional painting services. We offer interior and exterior painting, wall preparation, texture painting, and custom color matching. Our experienced painters ensure a smooth finish and a clean work environment. Free consultation and color guidance available.",
+                "₹ 10/sq ft onwards",
+                "4.9 (120 reviews)",
+                "- Interior & exterior painting\n- Wall preparation (putty, primer)\n- Texture painting\n- Wallpaper removal\n- Damage repair & touch-ups"
+        ));
+
         CardAdapter householdServiceAdapter = new CardAdapter(householdServices);
         householdServiceRecyclerView.setAdapter(householdServiceAdapter);
 
@@ -212,6 +225,17 @@ public class MainActivity extends AppCompatActivity {
                 "150/sq ft onwards",
                 "4.8 (70 reviews)",
                 "- Space planning\n- Furniture & decor selection\n- Color consultation\n- Lighting design\n- 3D rendering & visualization"
+        ));
+
+        // Tile Worker Data
+        lifestyleServices.add(new Service(
+                R.drawable.tilework, // Assuming you have a tile worker image
+                "Tile Worker",
+                "Precise tile installation and repair services.",
+                "Skilled tile workers for professional flooring, wall tiling, and bathroom tiling. We handle ceramic, porcelain, mosaic, and natural stone tiles. Services include new installation, re-grouting, repair of broken tiles, and waterproofing solutions for bathrooms.",
+                "₹ 20/sq ft onwards",
+                "4.5 (90 reviews)",
+                "- Floor & wall tiling\n- Bathroom tiling\n- Re-grouting\n- Tile repair & replacement\n- Waterproofing"
         ));
 
         CardAdapter lifestyleAdapter = new CardAdapter(lifestyleServices);
