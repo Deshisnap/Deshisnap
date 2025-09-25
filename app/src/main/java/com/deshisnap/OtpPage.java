@@ -5,6 +5,12 @@ import android.os.Bundle;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.view.KeyEvent;
+import android.view.View;
+import android.view.ViewGroup;
+
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -39,8 +45,7 @@ public class OtpPage extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.otp_page);
 
-        TextView notification_page_heading = findViewById(R.id.textView4);
-        Utils.applyGradientToText(notification_page_heading, "#04FDAA", "#01D3F8");
+
 
         mAuth = FirebaseAuth.getInstance();
         mDatabase = FirebaseDatabase.getInstance().getReference(); // Initialize DatabaseReference
@@ -62,6 +67,9 @@ public class OtpPage extends AppCompatActivity {
         otpDigit5 = findViewById(R.id.otp_digit_5);
         otpDigit6 = findViewById(R.id.otp_digit_6);
 
+        setupOtpInputs();
+
+
         TextView verifyButton = findViewById(R.id.verify_button);
         verifyButton.setOnClickListener(v -> {
             String otp = otpDigit1.getText().toString() + otpDigit2.getText().toString() +
@@ -79,6 +87,54 @@ public class OtpPage extends AppCompatActivity {
         resendOtpButton = findViewById(R.id.resend_Otp);
         resendOtpButton.setOnClickListener(v -> resendOtp());
     }
+
+
+    // Call this after initializing otpDigit1..otpDigit6 in onCreate():
+
+
+    private void setupOtpInputs() {
+        setupOtpEdit(otpDigit1, null, otpDigit2);
+        setupOtpEdit(otpDigit2, otpDigit1, otpDigit3);
+        setupOtpEdit(otpDigit3, otpDigit2, otpDigit4);
+        setupOtpEdit(otpDigit4, otpDigit3, otpDigit5);
+        setupOtpEdit(otpDigit5, otpDigit4, otpDigit6);
+        setupOtpEdit(otpDigit6, otpDigit5, null);
+    }
+
+    private void setupOtpEdit(final EditText edit, final EditText previous, final EditText next) {
+        edit.addTextChangedListener(new TextWatcher() {
+            @Override public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                // Move forward when user types a digit
+                if (s.length() == 1 && next != null) {
+                    next.requestFocus();
+                }
+                // Move backward when user deletes a digit
+                else if (s.length() == 0 && before == 1 && previous != null) {
+                    previous.requestFocus();
+                    previous.setText(""); // clear previous box for clean backspace
+                }
+            }
+
+            @Override public void afterTextChanged(Editable s) {}
+        });
+
+        // fallback for some keyboards / physical keyboard delete key behavior
+        edit.setOnKeyListener((v, keyCode, event) -> {
+            if (keyCode == KeyEvent.KEYCODE_DEL && event.getAction() == KeyEvent.ACTION_DOWN) {
+                if (edit.getText().toString().isEmpty() && previous != null) {
+                    previous.requestFocus();
+                    previous.setText("");
+                    return true;
+                }
+            }
+            return false;
+        });
+    }
+
+
 
     private void signInWithPhoneAuthCredential(PhoneAuthCredential credential) {
         mAuth.signInWithCredential(credential)
