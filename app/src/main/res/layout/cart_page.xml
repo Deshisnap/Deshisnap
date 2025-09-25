@@ -54,15 +54,14 @@
                 android:id="@+id/cart_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="My Cart"
-                android:textSize="25sp"
-                android:textFontWeight="700"
-                android:textColor="@color/nav_item_active"
-                android:fontFamily="sans-serif"
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="20dp"
-                />
+                android:fontFamily="sans-serif"
+                android:text="My Cart"
+                android:textColor="@color/nav_item_active"
+                android:textFontWeight="700"
+                android:textSize="25sp" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/cart_items_recycler_view"
@@ -188,7 +187,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Proceed to Pay"
-            android:backgroundTint="@color/nav_item_active"
+            android:background="@drawable/app_button_ripple"
             android:textColor="@color/white"
             android:textSize="18sp"
             android:layout_margin="16dp"/>
