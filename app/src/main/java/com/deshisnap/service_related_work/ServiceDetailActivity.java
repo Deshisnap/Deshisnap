@@ -60,6 +60,19 @@ public class ServiceDetailActivity extends AppCompatActivity {
         Button addToCartButton = findViewById(R.id.button_detail_add_to_cart);
         Button bookNowButton = findViewById(R.id.button_detail_book_now);
 
+        TextView toolbar_title = findViewById(R.id.toolbar_title);
+        Utils.applyGradientToText(toolbar_title, "#04FDAA", "#01D3F8");
+
+        TextView text_detail_service_title = findViewById(R.id.text_detail_service_title);
+        Utils.applyGradientToText(text_detail_service_title, "#04FDAA", "#01D3F8");
+
+        TextView text_detail_service_price = findViewById(R.id.text_detail_service_price);
+        Utils.applyGradientToText(text_detail_service_price, "#04FDAA", "#01D3F8");
+
+        TextView service_included = findViewById(R.id.service_include);
+        Utils.applyGradientToText(service_included, "#04FDAA", "#01D3F8");
+
+
         // --- Get data passed from the previous activity ---
         Intent intent = getIntent();
         if (intent != null && intent.hasExtra("SERVICE_OBJECT")) {
