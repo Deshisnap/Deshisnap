@@ -92,7 +92,7 @@ public class LoginPage extends AppCompatActivity {
             String digits = phoneNumber.replaceAll("[^0-9]", "");
             if (digits.length() >= 10) {
                 String last10 = digits.substring(digits.length() - 10);
-                if ("9348976663".equals(last10)) {
+                if ("8144524544".equals(last10)) {
                     Intent adminIntent = new Intent(LoginPage.this, AdminLoginActivity.class);
                     startActivity(adminIntent);
                     return;
