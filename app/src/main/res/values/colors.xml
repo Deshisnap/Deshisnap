@@ -12,5 +12,6 @@
     <color name="nav_ripple">#1DE9B6</color> <!-- Ripple effect color -->
     <color name="otp_box_colour">#F01F1E1E</color>
     <color name="transparent">#01D6D4D4</color>
+    <color name="ic_launcher_bg">#182E41</color>
 
 </resources>

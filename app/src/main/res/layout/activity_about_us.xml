@@ -6,6 +6,7 @@
     android:background="@color/appHometheme">
 
     <ImageView
+        android:id="@+id/back_button"
         android:layout_width="30dp"
         android:layout_height="30dp"
         android:src="@drawable/arrow_mark"

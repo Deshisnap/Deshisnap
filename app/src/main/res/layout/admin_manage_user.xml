@@ -105,6 +105,7 @@
             android:orientation="horizontal"
             android:padding="1dp"
             app:layout_constraintBottom_toBottomOf="parent"
+            android:visibility="gone"
             >  <!-- ensures it sits above the ScrollView -->
 
 

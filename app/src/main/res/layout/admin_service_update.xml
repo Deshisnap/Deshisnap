@@ -107,7 +107,8 @@
             android:elevation="8dp"
             android:orientation="horizontal"
             android:padding="1dp"
-            app:layout_constraintBottom_toBottomOf="parent">  <!-- ensures it sits above the ScrollView -->
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:visibility="gone">  <!-- ensures it sits above the ScrollView -->
 
             <include layout="@layout/navbar"
                 android:id="@+id/bottom_navigation" />

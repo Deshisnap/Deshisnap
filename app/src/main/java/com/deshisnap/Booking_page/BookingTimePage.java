@@ -350,6 +350,18 @@ public class BookingTimePage extends AppCompatActivity {
     private void loadAdminQrInto(final ImageView target) {
         final long MAX_DOWNLOAD_BYTES = 2 * 1024 * 1024; // 2MB
         final View progress = findViewById(R.id.qr_progress);
+
+        // 1) Try cache first
+        try {
+            java.io.File cacheFile = new java.io.File(getFilesDir(), "admin_qr_cache.jpg");
+            if (cacheFile.exists()) {
+                android.graphics.Bitmap cached = android.graphics.BitmapFactory.decodeFile(cacheFile.getAbsolutePath());
+                if (cached != null) {
+                    target.setImageBitmap(cached);
+                }
+            }
+        } catch (Exception ignored) {}
+
         if (progress != null) progress.setVisibility(View.VISIBLE);
         DatabaseReference urlRef = FirebaseDatabase.getInstance().getReference("admin").child("qr").child("url");
         urlRef.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -361,11 +373,35 @@ public class BookingTimePage extends AppCompatActivity {
                     if (progress != null) progress.setVisibility(View.GONE);
                     return;
                 }
+                // If we already have a cached file AND URL hasn't changed, skip network
+                try {
+                    java.io.File cacheFile = new java.io.File(getFilesDir(), "admin_qr_cache.jpg");
+                    String lastUrl = getSharedPreferences("cache", MODE_PRIVATE)
+                            .getString("admin_qr_url", null);
+                    if (cacheFile.exists() && url.equals(lastUrl)) {
+                        if (progress != null) progress.setVisibility(View.GONE);
+                        return; // already set from cache above
+                    }
+                } catch (Exception ignored) {}
                 StorageReference storageRef = FirebaseStorage.getInstance().getReference().child("admin/qr/qr.jpg");
                 storageRef.getBytes(MAX_DOWNLOAD_BYTES)
                         .addOnSuccessListener(bytes -> {
                             Bitmap bmp = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
                             target.setImageBitmap(bmp);
+                            // 2) Save to cache for next loads
+                            try {
+                                java.io.File cacheFile = new java.io.File(getFilesDir(), "admin_qr_cache.jpg");
+                                java.io.FileOutputStream fos = new java.io.FileOutputStream(cacheFile);
+                                bmp.compress(Bitmap.CompressFormat.JPEG, 90, fos);
+                                fos.flush();
+                                fos.close();
+                                getSharedPreferences("cache", MODE_PRIVATE)
+                                        .edit()
+                                        .putString("admin_qr_url", url)
+                                        .apply();
+                            } catch (Exception e) {
+                                Log.w(TAG, "Failed to cache admin QR: " + e.getMessage());
+                            }
                             if (progress != null) progress.setVisibility(View.GONE);
                         })
                         .addOnFailureListener(e -> {

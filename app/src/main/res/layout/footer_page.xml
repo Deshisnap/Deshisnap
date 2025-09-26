@@ -7,18 +7,26 @@
     >
 
     <TextView
+        android:id="@+id/contact_prompt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Feel Free To contact Us deshisnap247service@gmail.com"
+        android:text="Feel Free To Contact Us"
         android:textColor="@color/white"
         android:layout_centerHorizontal="true"
-        android:textSize="20sp"
+        android:textSize="18sp"
+        android:layout_marginTop="20dp" />
 
-        android:layout_marginTop="20dp"
-        android:layout_marginBottom="70dp"
-        >
-
-    </TextView>
+    <TextView
+        android:id="@+id/contact_email"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="deshisnap247service@gmail.com"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        android:layout_below="@id/contact_prompt"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="6dp"
+        android:layout_marginBottom="70dp" />
 
 </RelativeLayout>
 
